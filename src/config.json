@@ -1,0 +1,10 @@
+{
+  "name": "Moment Stockist",
+  "displayName": "Moment Stockist",
+  "company": "Moment Stockist",
+
+  "STORAGE_ID": "@moment-stockist",
+  "STORAGE_KEY": "@moment-stockist.web",
+
+  "experiments": []
+}

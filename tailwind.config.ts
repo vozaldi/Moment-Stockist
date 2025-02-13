@@ -8,6 +8,11 @@ export default {
   ],
   theme: {
     extend: {
+      fontFamily: {
+        sans: ['Spartan', 'sans-serif'],
+        serif: ['Spartan', 'serif'],
+        'custom': ['"Nanum Myeongjom"', 'Spartan'],
+      },
       colors: {
         background: "var(--background)",
         foreground: "var(--foreground)",
