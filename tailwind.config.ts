@@ -10,12 +10,12 @@ export default {
     extend: {
       fontFamily: {
         sans: ['Spartan', 'sans-serif'],
-        serif: ['Spartan', 'serif'],
-        'custom': ['"Nanum Myeongjom"', 'Spartan'],
+        serif: ['"Nanum Myeongjo"', 'Spartan', 'serif'],
       },
       colors: {
-        background: "var(--background)",
-        foreground: "var(--foreground)",
+        primary: '#eab2b2',
+        secondary: '#e39b35',
+        'focusan-pink': '#f9bdbd',
       },
     },
   },
