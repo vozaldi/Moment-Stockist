@@ -1,4 +1,6 @@
 import TagCard from "@/components/commons/cards/TagCard";
+import HomeProductCarousel from "@/components/commons/carousels/HomeProductCarousel";
+import HomeTestimonyCarousel from "@/components/commons/carousels/HomeTestimonyCarousel";
 import { appConfig } from "@/lib/config";
 import clsx from "clsx";
 import Image from "next/image";
@@ -65,7 +67,7 @@ export default function Home() {
 
             <div className="relative">
               <Image
-                src={'/assets/images/products/product-essensia.png'}
+                src={'/assets/images/products/essensia.png'}
                 alt={`Moment Essensia`}
                 width={600}
                 height={600}
@@ -124,7 +126,7 @@ export default function Home() {
         </section>
 
         <section className="flex">
-          <div className="bg-focusan-pink/50 grow md:w-50 p-10 md:p-12">
+          <div className="bg-fucosan-pink/50 grow md:w-50 p-10 md:p-12">
             <div className="relative flex flex-col justify-center items-center max-w-[550px] mx-auto aspect-square p-6 md:p-8 rounded-3xl bg-white/90 text-center">
               <h3 className="text-2xl md:text-4xl font-serif mb-4 md:mb-8">
                 {`Why you'll love Moment`}
@@ -135,7 +137,7 @@ export default function Home() {
               </p>
 
               <Image
-                className="absolute w-full h-full scale-[1.1] object-contain"
+                className="absolute w-full h-full scale-[1.1] object-contain pointer-events-none"
                 src={'/assets/images/decorations/decoration-box.png'}
                 alt={`Banner why you'll love us`}
                 width={626}
@@ -162,11 +164,245 @@ export default function Home() {
             </h3>
 
             <p className="text-lg md:text-xl mt-3">
-              {`Specially formulated for anyone who wants to promote their good health and well-being `}
+              {`Specially formulated for anyone who wants to promote their good health and well-being`}
             </p>
           </div>
 
-          
+          <div className="max-w-full mt-4">
+            <HomeProductCarousel
+              products={[{
+                id: 1,
+                name: `Moment Fucosan`,
+                price: 650000,
+                color: '#cacef4',
+                image_url: '/assets/images/products/fucosan.png',
+              }, {
+                id: 2,
+                name: `Zmooth`,
+                price: 650000,
+                color: '#d2ecc5',
+                image_url: '/assets/images/products/zmooth.png',
+                decoration_url: '/assets/images/decorations/decoration-zmooth.png',
+              }, {
+                id: 3,
+                name: `Moment Essensia`,
+                price: 650000,
+                color: '#eee4c3',
+                image_url: '/assets/images/products/essensia.png',
+                decoration_url: '/assets/images/decorations/decoration-herb.png',
+              }, {
+                id: 4,
+                name: `Moment Glucogen`,
+                price: 650000,
+                color: '#ffe1e1',
+                image_url: '/assets/images/products/glucogen.png',
+                decoration_url: '/assets/images/decorations/decoration-lemon.png',
+              }, {
+                id: 5,
+                name: `Zhield`,
+                price: 650000,
+                color: '#ffdbdb',
+                image_url: '/assets/images/products/zhield.png',
+                decoration_url: '/assets/images/decorations/decoration-zhield.png',
+              }, {
+                id: 6,
+                name: `Morex`,
+                price: 650000,
+                color: '#d0eeff',
+                image_url: '/assets/images/products/morex.png',
+                decoration_url: '/assets/images/decorations/decoration-morex.png',
+              }, {
+                id: 7,
+                name: `Moment Propolis`,
+                price: 650000,
+                color: '#f6f4d3',
+                image_url: '/assets/images/products/propolis.png',
+              }, {
+                id: 8,
+                name: `Moment Coffe`,
+                price: 650000,
+                color: '#f5e5d6',
+              }, {
+                id: 9,
+                name: `Softly`,
+                price: 650000,
+              }, {
+                id: 10,
+                name: `Creamy Essence`,
+                price: 650000,
+              }]}
+            />
+          </div>
+        </section>
+
+        <section className="py-7 bg-fucosan-pink text-white">
+          <h3 className="container font-bold text-2xl md:text-5xl font-serif text-center mx-auto">
+            {`Live Life Better with Personalized Nutrition`}
+          </h3>
+        </section>
+
+        <section className="container md:pt-24 md:px-12 sm mx-auto h-screen flex-col flex justify-center">
+          <div className="text-center">
+            <h3 className="text-3xl md:text-5xl font-serif">
+              {`What Our Customer Say`}
+            </h3>
+
+            <p className="text-lg md:text-xl mt-3 font-serif">
+              {`Lorem ipsum dolor sit amet, consectetur adipiscing elit.`}
+            </p>
+          </div>
+
+          <div className="max-w-full mt-12">
+            <HomeTestimonyCarousel
+              testimonies={[{
+                id: 1,
+                name: `Daniela Pramitha`,
+                comment: `Daniela Pramitha Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed diam nonummy nibh ultricies euismod tincidunt ut labore et dolore magna aliquam. Ut enim ad minim veniam`,
+                image_url: '/assets/images/testimonies/avatar-1.png',
+              }, {
+                id: 2,
+                name: `Elsha Harley Oktarindra`,
+                comment: `Elsha Harley Oktarindra Nonummy nibh ultricies euismod tincidunt ut labore et dolore magna aliquam. Ut enim ad minim veniam. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed diam`,
+                image_url: '/assets/images/testimonies/avatar-2.png',
+              }, {
+                id: 3,
+                name: `Kamila Badriyah Fisrih`,
+                comment: `Kamila Badriyah Fisrih Ut enim ad minim veniam. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed diam. Nonummy nibh ultricies euismod tincidunt ut labore et dolore magna aliquam`,
+                image_url: '/assets/images/testimonies/avatar-3.png',
+              }]}
+            />
+          </div>
+        </section>
+
+        <section className="container md:pt-24 md:px-12 sm mx-auto h-screen flex-col flex justify-center">
+          <div className="text-center max-w-4xl mx-auto">
+            <h3 className="text-3xl md:text-5xl font-serif font-bold">
+              {`The Daily Habit`}
+            </h3>
+
+            <p className="text-lg md:text-xl mt-3">
+              {`Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut enim ad minim veniam, quis nostrud exercitation`}
+            </p>
+          </div>
+
+          <div className="flex items-center justify-center gap-x-8 mt-8 md:mt-12">
+            <Link href="/" className="w-[288px] group/card">
+              <Image
+                className="rounded-xl md:rounded-3xl aspect-square object-cover group-hover/card:scale-[0.95] transition-all duration-500"
+                src={'/assets/images/pictures/cover-astaxanthin.jpg'}
+                alt={`Cover Astaxanthin`}
+                width={400}
+                height={400}
+              />
+
+              <h6 className="text-base md:text-3xl font-serif text-center mt-4 group-hover/card:-translate-y-[30%] transition-all duration-500">
+                {`ASTAXANTHIN : ANTIOKSIDAN 6000X LEBIH KUAT DARI VIT.C`}
+              </h6>
+            </Link>
+
+            <Link href="/" className="w-[288px] group/card">
+              <Image
+                className="rounded-xl md:rounded-3xl aspect-[0.7] object-cover group-hover/card:scale-[0.95] transition-all duration-500"
+                src={'/assets/images/pictures/cover-hmpv.jpg'}
+                alt={`Cover HMPV`}
+                width={400}
+                height={400}
+              />
+
+              <h6 className="text-base md:text-3xl font-serif text-center mt-4 group-hover/card:-translate-y-[30%] transition-all duration-500">
+                {`Mengenal Human Metapneumovirus (HMPV)`}
+              </h6>
+            </Link>
+
+            <Link href="/" className="w-[288px] group/card">
+              <Image
+                className="rounded-xl md:rounded-3xl aspect-square object-cover group-hover/card:scale-[0.95] transition-all duration-500"
+                src={'/assets/images/pictures/cover-fish-collagen.jpg'}
+                alt={`Cover FISH MARINE COLLAGEN`}
+                width={400}
+                height={400}
+              />
+
+              <h6 className="text-base md:text-3xl font-serif text-center mt-4 group-hover/card:-translate-y-[30%] transition-all duration-500">
+                {`KEUNGGULAN FISH MARINE COLLAGEN DIBANDING SUMBER ALAMI LAINNYA`}
+              </h6>
+            </Link>
+          </div>
+        </section>
+
+        <section className="relative py-12 md:py-24 h-[75vh] md:h-screen bg-gray-100 overflow-hidden flex justify-center items-center">
+          {[{
+            image_url: '/assets/images/pictures/post-1.png',
+            right: '3%',
+            top: '45%',
+            size: 192,
+          }, {
+            image_url: '/assets/images/pictures/post-2.png',
+            left: '30%',
+            top: '20%',
+            size: 216,
+          }, {
+            image_url: '/assets/images/pictures/post-3.png',
+            left: '1%',
+            top: '37%',
+            size: 216,
+          }, {
+            image_url: '/assets/images/pictures/post-4.png',
+            left: '45%',
+            top: '56%',
+            size: 282,
+          }, {
+            image_url: '/assets/images/pictures/post-5.png',
+            left: '58%',
+            top: '35%',
+            size: 242,
+          }].map((item, index) => (
+            <Image
+              key={item.image_url}
+              src={item.image_url}
+              alt="Instagram Icon"
+              className="absolute object-cover pointer-events-none"
+              style={{
+                left: item.left,
+                right: item.right,
+                top: item.top,
+                width: item.size,
+                height: item.size,
+                zIndex: 10 - index,
+              }}
+              width={300}
+              height={300}
+            />
+          ))}
+
+          <div className="w-80 absolute top-1/2 left-1/2 md:translate-y-[20%] md:-translate-x-[128%] -translate-x-[55%] z-20">
+            <div className="font-bold text-sm md:text-xl flex items-center drop-shadow">
+              <Image
+                src={"/assets/images/socials/icon-instagram.png"}
+                alt="Instagram Icon"
+                className="w-8 h-8 mr-3"
+                width={32}
+                height={32}
+              />
+
+              <Link href={appConfig('url_instagram')} target="_blank" className="hover:underline">
+                <span>{`@moment2uofficial`}</span>
+              </Link>
+            </div>
+            
+            <p className="mt-4 text-sm md:text-base drop-shadow">
+              {`Use #moment2uofficial and your post could be featured in our gallery`}
+            </p>
+          </div>
+        </section>
+
+        <section className="container md:pt-24 md:px-12 sm mx-auto flex items-center py-24 px-12">
+          <div className="w-1/2">
+            <h3 className="text-3xl mb-5 md:mb-0 text-center md:text-left md:text-5xl leading-normal md:leading-normal font-black font-serif">
+              {`Question?`}
+              <br />{`We've got answer`}
+            </h3>
+          </div>
         </section>
 
         <p>{appConfig('company')}</p>

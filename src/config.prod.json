@@ -6,5 +6,9 @@
   "STORAGE_ID": "@moment-stockist",
   "STORAGE_KEY": "@moment-stockist.web",
 
-  "experiments": []
+  "experiments": [],
+
+  "url_whatsapp": "https://wa.me/",
+  "url_line": "https://line.com/",
+  "url_instagram": "https://instagram.com/moment2uofficial"
 }
