@@ -582,6 +582,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@types/numeral@npm:^2.0.5":
+  version: 2.0.5
+  resolution: "@types/numeral@npm:2.0.5"
+  checksum: 0ec9d195248da1865bae5f1939bf93d2464fd2ddc5171444266c66092efb7335031852005842ec4449e1ae5742cd9717cc3af117d6f8cd6e51f083bc08f35239
+  languageName: node
+  linkType: hard
+
 "@types/react-dom@npm:^19":
   version: 19.0.3
   resolution: "@types/react-dom@npm:19.0.3"
@@ -2963,6 +2970,7 @@ __metadata:
   dependencies:
     "@eslint/eslintrc": ^3
     "@types/node": ^20
+    "@types/numeral": ^2.0.5
     "@types/react": ^19
     "@types/react-dom": ^19
     axios: ^1.7.9
@@ -2978,7 +2986,7 @@ __metadata:
     react-dom: ^19.0.0
     react-icons: ^5.4.0
     react-toastify: ^11.0.3
-    swiper: ^11.2.3
+    swiper: ^11.2.4
     tailwindcss: ^3.4.1
     typescript: ^5
     validator: ^13.12.0
@@ -4210,10 +4218,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"swiper@npm:^11.2.3":
-  version: 11.2.3
-  resolution: "swiper@npm:11.2.3"
-  checksum: cef942c5376fa0d69e5a6e20f07a85765f84adba902b8792f3892271bf37d8f8c6e37f6c302bd3e503bd8eecbbd30d071fd779c173577559ef4838dc6197a37e
+"swiper@npm:^11.2.4":
+  version: 11.2.4
+  resolution: "swiper@npm:11.2.4"
+  checksum: edb5ef0ecec004b1d65933b50be88dfb5d6460d1c4f5193f9e6b6f49557cbcd6c88bdd138d237ad89a15761db2fc1569cbd8f1d7b3e2cd0573e03eb81c073459
   languageName: node
   linkType: hard
 
