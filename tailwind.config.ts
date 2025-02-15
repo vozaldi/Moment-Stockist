@@ -15,7 +15,7 @@ export default {
       colors: {
         primary: '#eab2b2',
         secondary: '#e39b35',
-        'focusan-pink': '#f9bdbd',
+        'fucosan-pink': '#f9bdbd',
       },
     },
   },
