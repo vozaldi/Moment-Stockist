@@ -8,7 +8,7 @@ import clsx from "clsx";
 import Image from "next/image";
 import Link from "next/link";
 import { FaLine } from "react-icons/fa6";
-import { IoBagOutline, IoCall, IoLogoInstagram, IoLogoLinkedin, IoLogoWhatsapp, IoMail, IoPersonCircleOutline } from "react-icons/io5";
+import { IoBagOutline, IoCall, IoLogoInstagram, IoLogoWhatsapp, IoMail, IoPersonCircleOutline } from "react-icons/io5";
 
 export default function Home() {
   return (
@@ -171,7 +171,7 @@ export default function Home() {
             </p>
           </div>
 
-          <div className="max-w-full mt-4">
+          <div className="max-w-full mt-12">
             <HomeProductCarousel
               products={[{
                 id: 1,
@@ -179,6 +179,7 @@ export default function Home() {
                 price: 650000,
                 color: '#cacef4',
                 image_url: '/assets/images/products/fucosan.png',
+                decoration_url: '/assets/images/decorations/decoration-fucosan.png',
               }, {
                 id: 2,
                 name: `Zmooth`,
@@ -192,14 +193,14 @@ export default function Home() {
                 price: 650000,
                 color: '#eee4c3',
                 image_url: '/assets/images/products/essensia.png',
-                decoration_url: '/assets/images/decorations/decoration-herb.png',
+                decoration_url: '/assets/images/decorations/decoration-essensia.png',
               }, {
                 id: 4,
                 name: `Moment Glucogen`,
                 price: 650000,
                 color: '#ffe1e1',
                 image_url: '/assets/images/products/glucogen.png',
-                decoration_url: '/assets/images/decorations/decoration-lemon.png',
+                decoration_url: '/assets/images/decorations/decoration-glucogen.png',
               }, {
                 id: 5,
                 name: `Zhield`,

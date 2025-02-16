@@ -26,39 +26,43 @@ function HomeProductCarousel({
     >
       {products.map((item) => {
         return (
-          <SwiperSlide key={item.name} className="!w-[224px] px-1 pb-2">
+          <SwiperSlide key={item.name} className="!w-[224px] px-1 py-2">
             <div className="relative px-3 flex flex-col items-center">
               <Link
                 href={`/product/${item.name}`}
-                className={clsx([
-                  "group/card",
-                  "card border-neutral-200 text-decoration-none shadow-sm overflow-hidden rounded-lg",
-                  "hover:!shadow-md transition-shadow duration-200",
-                ])}
+                className="group/card block w-full"
               >
-                <div className="w-100 h-[136px] d-flex items-center justify-center">
+                <div className={clsx([
+                  'relative',
+                  "w-100 aspect-square flex items-center justify-center rounded-xl",
+                ])} style={{ backgroundColor: item.color || 'transparent' }}>
                   <Image
                     src={item.image_url || `/assets/images/app-logo-vertical.png`}
-                    className={clsx([
-                      "object-fit-cover rounded-t-md group-hover/card:scale-105 transition-transform duration-200",
-                      "w-[152px] h-[152px]",
-                    ])}
+                    className="w-[152px] h-[152px] object-contain"
                     alt={`Image ${item.name}`}
                     width={152}
                     height={152}
                   />
+
+                  {!!item.decoration_url && (
+                    <Image
+                      src={item.decoration_url || `/assets/images/app-logo-vertical.png`}
+                      className="absolute max-w-none w-[110%] h-[110%] -left-[5%] -top-[5%] object-contain group-hover/card:scale-105 transition-all duration-300 pointer-events-none"
+                      alt={`Image ${item.name}`}
+                      width={152}
+                      height={152}
+                    />
+                  )}
                 </div>
 
-                <div className="card-body bg-white z-10 px-2 py-1">
-                  <h6 className="small mb-1 fw-semibold min-h-[2.4em] line-clamp-2">{item.name}</h6>
-                </div>
+                <h6 className="text-2xl text-center mt-2 fw-semibold min-h-[3em] line-clamp-2 flex items-center justify-center group-hover/card:underline">{item.name}</h6>
               </Link>
 
               {!!item.price && (
-                <p className="small fw-bold mb-0">{numeral(item.price).format('$0,0')}</p>
+                <p className="text-lg text-black font-semibold mb-0">{numeral(item.price).format('$0,0')}</p>
               )}
 
-              <Button className="uppercase font-bold w-full mt-2" color="primary" size="sm" border>
+              <Button className="uppercase font-bold w-full mt-3" color="primary" size="sm" border>
                 {`Add to Cart`}
               </Button>
             </div>
