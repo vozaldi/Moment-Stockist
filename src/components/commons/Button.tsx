@@ -8,7 +8,7 @@ type ButtonBaseProps =
   | ({ type?: HTMLButtonProps['type'] } & Partial<HTMLButtonProps>);
 
 type Props = ButtonBaseProps & {
-  color?: 'transparent' | 'primary' | 'secondary';
+  color?: 'transparent' | 'primary' | 'secondary' | 'fucosan-pink';
   size?: 'default' | 'sm' | 'xs';
   border?: boolean;
 };
@@ -21,17 +21,18 @@ function Button(props: Props) {
   const classNames = clsx([
     { 'rounded-full': !props.className?.includes('rounded') },
     color === 'primary' && 'bg-primary text-white hover:bg-primary/80',
-    color === 'secondary' && 'bg-secondary text-white',
+    color === 'secondary' && 'bg-secondary text-white hover:bg-secondary/80',
+    color === 'fucosan-pink' && 'bg-fucosan-pink text-white hover:bg-fucosan-pink/80',
     size === 'default' && 'py-3 px-6',
     size === 'sm' && 'py-2 px-4 text-sm',
     size === 'xs' && 'py-1 px-2 text-xs',
-    !border && 'ring-2 ring-primary border-2 border-white',
+    !!border && 'ring-2 ring-primary border-2 border-white',
   ]);
 
   return rest.type === 'link' ? (
     <Link
       {...rest}
-      className={clsx([classNames, 'bg-', props.className])}
+      className={clsx([classNames, props.className])}
     />
   ) : (
     <button
