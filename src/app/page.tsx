@@ -9,8 +9,6 @@ import { appConfig } from "@/lib/config";
 import clsx from "clsx";
 import Image from "next/image";
 import Link from "next/link";
-import { FaLine } from "react-icons/fa6";
-import { IoCall, IoLogoInstagram, IoLogoWhatsapp, IoMail } from "react-icons/io5";
 
 export default function Home() {
   return (
@@ -44,7 +42,7 @@ export default function Home() {
 
             <div className="relative">
               <Image
-                src={'/assets/images/products/essensia.png'}
+                src={'/assets/images/products/featured-essensia.png'}
                 alt={`Moment Essensia`}
                 width={600}
                 height={600}
