@@ -3,6 +3,7 @@ import Button from "@/components/commons/Button";
 import TagCard from "@/components/commons/cards/TagCard";
 import HomeProductCarousel from "@/components/commons/carousels/HomeProductCarousel";
 import HomeTestimonyCarousel from "@/components/commons/carousels/HomeTestimonyCarousel";
+import KonsultasiGratisSection from "@/components/commons/KonsultasiGratisSection";
 import FooterPublic from "@/components/layouts/public/FooterPublic";
 import HeaderNavPublic from "@/components/layouts/public/HeaderNavPublic";
 import { appConfig } from "@/lib/config";
@@ -396,52 +397,7 @@ export default function Home() {
           </div>
         </section>
 
-        <section className="container pt-8 md:pt-20 md:px-12 sm mx-auto flex-col flex justify-center">
-          <div className="text-center max-w-4xl mx-auto">
-            <h3 className="uppercase text-center text-4xl font-serif font-bold">
-              {`Mau Konsultasi`}
-              {' '}<span className="text-fucosan-pink">{`Gratis`}</span>
-              {' '}{`Dengan Saya`}
-            </h3>
-
-            <Image
-              src={'/assets/images/pictures/avatar.jpg'}
-              alt="Konsultasi Gratis"
-              className="my-12 w-44 h-44 rounded-full shadow-lg mx-auto shadow-primary"
-              width={200}
-              height={200}
-            />
-
-            <h5 className="font-medium text-4xl text-center">
-              {`Delta Gamma`}
-            </h5>
-
-            <p className="mt-4 text-xl text-center">
-              {`- Delta Store -`}
-            </p>
-
-            <Button
-              className="mt-12 inline-flex items-center"
-              type="link"
-              href={'https://wa.me/6282110000000'}
-              target="_blank"
-              color="fucosan-pink"
-            >
-              <p className="px-6 uppercase -ml-4">
-                {`Konsultasi Sekarang`}
-              </p>
-
-              <div className="-my-4 -mr-5 bg-white rounded-full h-10 w-10 flex items-center justify-center">
-                <Image
-                  src={'/assets/images/socials/icon-whatsapp.png'}
-                  alt="Konsultasi Gratis"
-                  width={24}
-                  height={24}
-                />
-              </div>
-            </Button>
-          </div>
-        </section>
+        <KonsultasiGratisSection />
       </main>
 
       <FooterPublic />
