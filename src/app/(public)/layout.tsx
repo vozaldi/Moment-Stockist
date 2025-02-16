@@ -19,11 +19,11 @@ export default function PublicLayout({
 }>) {
   return (
     <>
-      <HeaderNavPublic />
+      <HeaderNavPublic className="hover:bg-white/25 hover:backdrop-blur-sm" />
 
       <main className="grow">{children}</main>
 
-      <FooterPublic />
+      <FooterPublic className="mt-16" hideBrown />
     </>
   );
 }

@@ -12,7 +12,7 @@ function HeaderNavPublic({
 }: Props) {
   return (
     <nav className={clsx("w-full absolute top-0 left-0 z-[500]", className)} {...props}>
-      <div className="container mx-auto py-4 flex justify-between">
+      <div className="container mx-auto py-4 flex justify-between items-center">
         <Link href={"/"}>
           <Image
             src={'/assets/images/app-logo.png'}
@@ -22,7 +22,7 @@ function HeaderNavPublic({
           />
         </Link>
 
-        <ul className="flex gap-x-6">
+        <ul className="flex gap-x-6 items-center">
           <li>
             <Link href={'/auth/login'} className="flex text-lg items-center hover:text-primary">
               <IoPersonCircleOutline size={32} />

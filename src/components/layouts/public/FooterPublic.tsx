@@ -5,23 +5,28 @@ import Link from "next/link";
 import { FaLine } from "react-icons/fa6";
 import { IoCall, IoLogoInstagram, IoLogoWhatsapp, IoMail } from "react-icons/io5";
 
-type Props = React.HTMLAttributes<HTMLDivElement>;
+type Props = React.HTMLAttributes<HTMLDivElement> & {
+  hideBrown?: boolean;
+};
 
 function FooterPublic({
   className,
+  hideBrown,
   ...props
 }: Props) {
   return (
     <footer className={clsx("relative", className)} {...props}>
       <div className="absolute inset-0 flex flex-col -z-10">
         <div className="-mt-[300px] grow flex items-end">
-          <Image
-            src={'/assets/images/decorations/brown.svg'}
-            alt="Footer Decoration Pink"
-            className="w-full h-screen absolute bottom-0 object-cover object-top"
-            width={1440}
-            height={500}
-          />
+          {!hideBrown && (
+            <Image
+              src={'/assets/images/decorations/brown.svg'}
+              alt="Footer Decoration Pink"
+              className="w-full h-screen absolute bottom-0 object-cover object-top"
+              width={1440}
+              height={500}
+            />
+          )}
 
           <Image
             src={'/assets/images/decorations/blue.svg'}
