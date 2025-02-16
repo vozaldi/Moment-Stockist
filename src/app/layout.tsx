@@ -18,7 +18,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`text-gray-600 antialiased bg-white`}
+        className={`text-gray-600 antialiased bg-white flex flex-col min-h-screen`}
       >
         {children}
       </body>
