@@ -3,6 +3,7 @@ import HeaderNavPublic from "@/components/layouts/public/HeaderNavPublic";
 import FooterPublic from "@/components/layouts/public/FooterPublic";
 import FloatingCart from "@/components/layouts/public/FloatingCart";
 import { RootStoreProvider } from "@/states/providers/storeProvider";
+import LoginModal from "@/components/layouts/auth/LoginModal";
 
 export default function PublicLayout({
   children,
@@ -18,6 +19,8 @@ export default function PublicLayout({
       <FooterPublic className="mt-16" />
 
       <FloatingCart />
+
+      <LoginModal />
     </RootStoreProvider>
   );
 }

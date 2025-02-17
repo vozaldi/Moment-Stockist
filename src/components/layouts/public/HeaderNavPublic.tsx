@@ -1,4 +1,7 @@
+'use client';
+
 import { appConfig } from "@/lib/config";
+import { useUiShallow } from "@/states/uiState";
 import clsx from "clsx";
 import Image from "next/image";
 import Link from "next/link";
@@ -10,6 +13,9 @@ function HeaderNavPublic({
   className,
   ...props
 }: Props) {
+  // Hooks
+  const setLoginOpen = useUiShallow((state) => state.setLoginOpen);
+
   return (
     <nav className={clsx("w-full absolute top-0 left-0 z-[500]", className)} {...props}>
       <div className="container mx-auto py-4 flex justify-between items-center">
@@ -24,7 +30,15 @@ function HeaderNavPublic({
 
         <ul className="flex gap-x-6 items-center">
           <li>
-            <Link href={'/auth/login'} className="flex text-lg items-center hover:text-primary">
+            <Link
+              href={'/auth/login'}
+              className="flex text-lg items-center hover:text-primary"
+              onClick={(e) => {
+                e.preventDefault();
+
+                return setLoginOpen(true);
+              }}
+            >
               <IoPersonCircleOutline size={32} />
 
               <span className="ml-2">{`Login`}</span>

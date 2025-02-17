@@ -3,6 +3,7 @@ import TagCard from "@/components/commons/cards/TagCard";
 import HomeProductCarousel from "@/components/commons/carousels/HomeProductCarousel";
 import HomeTestimonyCarousel from "@/components/commons/carousels/HomeTestimonyCarousel";
 import KonsultasiGratisSection from "@/components/commons/KonsultasiGratisSection";
+import LoginModal from "@/components/layouts/auth/LoginModal";
 import FloatingCart from "@/components/layouts/public/FloatingCart";
 import FooterPublic from "@/components/layouts/public/FooterPublic";
 import HeaderNavPublic from "@/components/layouts/public/HeaderNavPublic";
@@ -408,6 +409,8 @@ export default function Home() {
       <FooterPublic />
 
       <FloatingCart />
+
+      <LoginModal />
     </>
   );
 }

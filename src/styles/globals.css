@@ -25,6 +25,69 @@ body {
   background: #eab2b2;
 }
 
+/** React Toastify **/
+#app-toast .app-toast-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#app-toast .app-toast-item {
+  min-height: 0;
+  margin-bottom: 0;
+  border-radius: 2rem;
+  padding: 0.275rem 1rem 0.275rem;
+  font-size: .925rem;
+  color: #fff;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background-color: #323232;
+  text-align: center;
+}
+
+#app-toast .app-toast-item + .app-toast-item {
+  margin-top: .5rem;
+}
+
+#app-toast .app-toast-item:last-child {
+  margin-bottom: 1rem;
+}
+
+#app-toast .app-toast-item .Toastify__toast-icon {
+  margin-inline-end: .5rem;
+}
+
+#app-toast .app-toast-body {
+  padding: 0;
+}
+
+#app-toast .Toastify__progress-bar--wrp {
+  height: 2px;
+}
+
+/** Forms **/
+.input-text-group {
+  position: relative;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: stretch;
+  width: 100%;
+}
+
+.input-text-group .form-control {
+  position: relative;
+  flex: 1 1 auto;
+  width: 1%;
+  min-width: 0;
+}
+
+.input-text-group .input-group-float {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+}
+
 /** Article **/
 .article-content ul {
   @apply list-disc pl-10 pb-4

@@ -3,24 +3,28 @@ import { useShallow } from "zustand/shallow";
 import { LayoutObject } from "../types/utilities";
 import { useContext } from "react";
 import { RootStoreContext } from "./providers/storeProvider";
+import { uiActions, UiStoreActions } from "./actions/uiActions";
 
-export type RootUIState = {
+export type UIStateType = {
   theme: 'light' | 'dark';
   menuOpen: boolean;
+  loginOpen: boolean;
   layouts: LayoutObject;
 };
 
-export const initialUiState: RootUIState = {
+export type RootUIState = UiStoreActions & UIStateType;
+
+export const initialUiState: UIStateType = {
   theme: 'light',
   menuOpen: false,
+  loginOpen: false,
   layouts: {},
 };
 
-export const createUiState = (initialState: RootUIState = initialUiState) => {
+export const createUiState = (initialState: UIStateType = initialUiState) => {
   return createStore<RootUIState>()((set, get) => ({
     ...initialState,
-    setTheme: (theme: 'light' | 'dark') => set((state) => ({ ...state, theme })),
-    setMenuOpen: (open: boolean) => set((state) => ({ ...state, menuOpen: open })),
+    ...uiActions(set, get),
   }));
 };
 
