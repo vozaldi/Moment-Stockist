@@ -1,6 +1,8 @@
 'use client';
 
+import Button from "@/components/commons/Button";
 import { appConfig } from "@/lib/config";
+import { useShopShallow } from "@/states/shopState";
 import { useUiShallow } from "@/states/uiState";
 import clsx from "clsx";
 import Image from "next/image";
@@ -15,6 +17,7 @@ function HeaderNavPublic({
 }: Props) {
   // Hooks
   const setLoginOpen = useUiShallow((state) => state.setLoginOpen);
+  const setCartOpen = useShopShallow((state) => state.setCartOpen);
 
   return (
     <nav className={clsx("w-full absolute top-0 left-0 z-[500]", className)} {...props}>
@@ -28,11 +31,11 @@ function HeaderNavPublic({
           />
         </Link>
 
-        <ul className="flex gap-x-6 items-center">
+        <ul className="flex gap-x-4 items-center">
           <li>
             <Link
               href={'/auth/login'}
-              className="flex text-lg items-center hover:text-primary"
+              className="flex text-lg items-center hover:text-primary px-2 py-2"
               onClick={(e) => {
                 e.preventDefault();
 
@@ -44,12 +47,16 @@ function HeaderNavPublic({
               <span className="ml-2">{`Login`}</span>
             </Link>
           </li>
+
           <li>
-            <Link href={'/auth/login'} className="flex text-lg items-center hover:text-primary">
+            <Button
+              className="!px-2 !py-2 flex items-center"
+              onClick={() => setCartOpen(true)}
+            >
               <IoBagOutline size={32} />
 
               <span className="ml-2">{`(0)`}</span>
-            </Link>
+            </Button>
           </li>
         </ul>
       </div>

@@ -5,9 +5,10 @@ import clsx from "clsx";
 import Link from "next/link";
 import TextField from "../commons/TextField";
 import Button from "../commons/Button";
+import { useRouter } from "next/navigation";
 
 type Props = React.HTMLAttributes<HTMLFormElement> & {
-  onRegisterClick?: () => void
+  onRegisterClick?: () => void;
 };
 
 function LoginForm({
@@ -16,6 +17,8 @@ function LoginForm({
   ...props
 }: Props) {
   // Hooks
+  const router = useRouter();
+
   const input = useFields({
     username: '',
     password: '',
@@ -30,6 +33,8 @@ function LoginForm({
     }
 
     console.log("Inputs", input.fields);
+
+    router.push('/account');
   };
 
   return (
