@@ -246,6 +246,11 @@ export default function Home() {
                 name: `Kamila Badriyah Fisrih`,
                 comment: `Kamila Badriyah Fisrih Ut enim ad minim veniam. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed diam. Nonummy nibh ultricies euismod tincidunt ut labore et dolore magna aliquam`,
                 image_url: '/assets/images/testimonies/avatar-3.png',
+              }, {
+                id: 3,
+                name: `Katrina Lestari`,
+                comment: `Elsha Harley Oktarindra Nonummy nibh ultricies euismod tincidunt ut labore et dolore magna aliquam. Ut enim ad minim veniam. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed diam.`,
+                image_url: '/assets/images/testimonies/avatar-2.png',
               }]}
             />
           </div>
