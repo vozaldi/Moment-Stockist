@@ -16,6 +16,7 @@ export default {
         primary: '#eab2b2',
         secondary: '#e39b35',
         'fucosan-pink': '#f9bdbd',
+        'fucosan-pink-dark': '#f67676',
       },
     },
   },

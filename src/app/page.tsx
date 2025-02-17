@@ -1,9 +1,9 @@
 import Accordion from "@/components/commons/Accordion";
-import Button from "@/components/commons/Button";
 import TagCard from "@/components/commons/cards/TagCard";
 import HomeProductCarousel from "@/components/commons/carousels/HomeProductCarousel";
 import HomeTestimonyCarousel from "@/components/commons/carousels/HomeTestimonyCarousel";
 import KonsultasiGratisSection from "@/components/commons/KonsultasiGratisSection";
+import FloatingCart from "@/components/layouts/public/FloatingCart";
 import FooterPublic from "@/components/layouts/public/FooterPublic";
 import HeaderNavPublic from "@/components/layouts/public/HeaderNavPublic";
 import { appConfig } from "@/lib/config";
@@ -401,6 +401,8 @@ export default function Home() {
       </main>
 
       <FooterPublic />
+
+      <FloatingCart />
     </>
   );
 }

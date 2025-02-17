@@ -4,6 +4,7 @@ import "../styles/fonts.css";
 import '../lib/utilities/numeral';
 import { appConfig } from "@/lib/config";
 import React from "react";
+import { RootStoreProvider } from "@/states/providers/storeProvider";
 
 export const metadata: Metadata = {
   title: appConfig('company'),
@@ -20,7 +21,9 @@ export default function RootLayout({
       <body
         className={`text-gray-600 antialiased bg-white flex flex-col min-h-screen`}
       >
-        {children}
+        <RootStoreProvider>
+          {children}
+        </RootStoreProvider>
       </body>
     </html>
   );
