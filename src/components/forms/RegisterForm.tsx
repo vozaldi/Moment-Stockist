@@ -5,6 +5,7 @@ import clsx from "clsx";
 import Link from "next/link";
 import TextField from "../commons/TextField";
 import Button from "../commons/Button";
+import { useUiShallow } from "@/states/uiState";
 
 type Props = React.HTMLAttributes<HTMLFormElement> & {
   onLoginClick?: () => void;
@@ -16,6 +17,7 @@ function RegisterForm({
   ...props
 }: Props) {
   // Hooks
+  const setLoginOpen = useUiShallow((state) => state.setLoginOpen);
   const input = useFields({
     name: '',
     username: '',
@@ -36,6 +38,8 @@ function RegisterForm({
     }
 
     console.log("Inputs", input.fields);
+
+    setLoginOpen(false);
   };
 
   return (

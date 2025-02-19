@@ -1,4 +1,4 @@
-import Button from "@/components/commons/Button";
+import AddToCart from "@/components/commons/buttons/AddToCart";
 import KonsultasiGratisSection from "@/components/commons/KonsultasiGratisSection";
 import ProductTabs from "@/components/pages/product/ProductTabs";
 import { appConfig } from "@/lib/config";
@@ -47,11 +47,7 @@ export default function ProductSlug() {
               <ProductTabs className="mt-2" product={product} />
             )}
 
-            <Button
-              className="mt-8 min-w-[200px] border border-white bg-white/20 hover:bg-white/30"
-            >
-              {`Add to Cart`}
-            </Button>
+            <AddToCart product={product} />
           </div>
 
           <div className="p-12 relative flex items-center justify-center">

@@ -11,11 +11,14 @@ type Props = ButtonBaseProps & {
   color?: 'transparent' | 'primary' | 'secondary' | 'fucosan-pink' | 'fucosan-pink-dark';
   size?: 'default' | 'sm' | 'xs' | number;
   border?: boolean;
+  loading?: boolean;
 };
 
 function Button(props: Props) {
   // Props
-  const { color = 'transparent', size = 'default', border = false, ...rest } = props;
+  const {
+    color = 'transparent', size = 'default', border = false, loading = false, ...rest
+  } = props;
 
   // Vars
   const classNames = clsx([
@@ -29,6 +32,7 @@ function Button(props: Props) {
     size === 'xs' && 'py-1 px-2 text-xs',
     'number' === typeof size && `flex items-center justify-center`,
     !!border && 'ring-2 ring-primary border-2 border-white',
+    loading && 'relative pointer-events-none opacity-50',
   ]);
 
   return rest.type === 'link' ? (
@@ -49,5 +53,7 @@ function Button(props: Props) {
     />
   );
 };
+
+export type ButtonProps = Props;
 
 export default Button;

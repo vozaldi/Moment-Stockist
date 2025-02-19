@@ -87,7 +87,7 @@ export default function Home() {
             }].map((item, index) => (
               <TagCard
                 key={item.label}
-                className={clsx("col-span-3 !text-lg !rounded-2xl !px-8", index === 1 && "scale-105")}
+                className={clsx("col-span-3 !text-lg !rounded-2xl !px-8 bg-slate-100", index === 1 && "scale-105")}
                 label={item.label}
                 left={(
                   <Image

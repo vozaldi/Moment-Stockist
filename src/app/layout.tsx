@@ -5,6 +5,7 @@ import '../lib/utilities/numeral';
 import { appConfig } from "@/lib/config";
 import React from "react";
 import { RootStoreProvider } from "@/states/providers/storeProvider";
+import ToastMessage from "@/components/commons/ToastMessage";
 
 export const metadata: Metadata = {
   title: appConfig('company'),
@@ -23,6 +24,8 @@ export default function RootLayout({
       >
         <RootStoreProvider>
           {children}
+
+          <ToastMessage />
         </RootStoreProvider>
       </body>
     </html>

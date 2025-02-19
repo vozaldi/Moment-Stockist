@@ -15,9 +15,10 @@ export const shopActions: StoreActions<ShopStoreActions, RootShopState> = (set, 
   },
 
   // Push Cart Item
-  pushShopCartItem: (cart: CartModel, replace = true) => {
+  pushShopCartItem: (cart: CartModel, replace = false) => {
     const shop = get();
-    const temp_id = `${cart.product_id}-${cart.product?.name}-${cart.pv_id}`;
+    const temp_id = `${cart.product_id}-${cart.product?.name}`;
+    const update_at = moment().format('YYYY-MM-DD HH:mm:ss');
 
     let shouldPush = true;
     const carts = [...shop.carts].map((item) => {
@@ -25,18 +26,21 @@ export const shopActions: StoreActions<ShopStoreActions, RootShopState> = (set, 
         (item.temp_id && item.temp_id === temp_id)
         || (item.id && item.id === cart.id)
       ) {
+        const price = cart.product?.price || item.price;
         const qty = replace ? cart.qty : ((item.qty || 0) + (cart.qty || 0));
 
         shouldPush = false;
 
-        return { ...item, ...cart, qty };
+        return { ...item, ...cart, qty, price, update_at };
       }
 
       return item;
     });
 
     if (shouldPush && carts.length < 100) {
-      carts.unshift({ ...cart, temp_id, is_active: 1 });
+      const price = cart.product?.price || 0;
+
+      carts.unshift({ ...cart, temp_id, price, is_active: 1, update_at });
     }
 
     const result = calcShop({ ...shop, carts, cartsUpdate: shop.cartsUpdate + 1 });

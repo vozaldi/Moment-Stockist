@@ -1,27 +1,110 @@
 'use client';
 
 import Button from "@/components/commons/Button";
-import { useShopShallow, useShopState } from "@/states/shopState";
+import { numeral } from "@/lib/utilities";
+import { useShopShallow } from "@/states/shopState";
+import { CartModel } from "@/types/models";
 import clsx from "clsx";
-import numeral from "numeral";
+import moment from "moment";
+import Image from "next/image";
 import { useEffect } from "react";
-import { IoArrowBack, IoCartOutline } from "react-icons/io5";
+import { IoArrowBack, IoCartOutline, IoClose } from "react-icons/io5";
+import { Slide, toast, ToastContainer, ToastContentProps } from "react-toastify";
 
 type Props = {
   // 
+};
+
+const CartToast = ({
+  data: { cart },
+  closeToast,
+  toastProps,
+}: ToastContentProps<{ cart: CartModel }>) => {
+  return (
+    <div
+      className="grow rounded-lg bg-gray-200 shadow-lg flex items-center p-2 font-sans"
+      style={{ backgroundColor: cart.product?.color }}
+    >
+      <div className="w-24 h-24 flex items-center justify-center">
+        {!!cart.product?.image_url && (
+          <Image
+            src={cart.product.image_url}
+            alt={`Produk ${cart.product.name}`}
+            className="object-contain max-w-full max-h-full"
+            width={200}
+            height={200}
+          />
+        )}
+      </div>
+
+      <div className="relative grow self-stretch flex flex-col p-2 rounded-md bg-white">
+        <p className="text-xs font-bold">
+          {`Added to cart`}
+        </p>
+
+        <h1 className="text-sm">{cart.product_name}</h1>
+
+        <div className="flex items-center mt-auto pt-1">
+          <div className="grow pr-1 text-sm">
+            <p>Qty: {cart.qty}</p>
+          </div>
+
+          <p
+            className="-mr-4 bg-gray-200 text-black py-1 pl-2 pr-4 rounded-lg font-bold text-xs"
+            style={{ backgroundColor: cart.product?.color }}
+          >
+            {numeral(cart.total).format('$0,0')}
+          </p>
+        </div>
+
+        <Button
+          className="absolute top-0 right-0"
+          size={24}
+          onClick={() => toast.dismiss(`cart-toast-${cart.product_id}`)}
+        >
+          <IoClose size={12} />
+        </Button>
+      </div>
+    </div>
+  );
 };
 
 function FloatingCart({}: Props) {
   // Hooks
   const cartOpen = useShopShallow((state) => state.cartOpen);
   const cartsUpdate = useShopShallow((state) => state.cartsUpdate);
+  const carts = useShopShallow((state) => state.carts);
   const grandTotal = useShopShallow((state) => state.transaction?.order_grand_total);
   const setCartOpen = useShopShallow((state) => state.setCartOpen);
 
   // Effects
   useEffect(() => {
+    const [cart] = carts.sort((a, b) => moment(b.update_at).diff(a.update_at));
 
-  }, [cartOpen]);
+    if (cart) {
+      const toastId = `cart-toast-${cart.product_id}`;
+      const toastData = { cart };
+
+      if (toast.isActive(toastId)) {
+        toast.update(toastId, { data: toastData });
+
+        return;
+      }
+
+      toast(CartToast, {
+        toastId,
+        containerId: 'cart-toast',
+        position: 'top-center',
+        transition: Slide,
+        autoClose: 5000,
+        pauseOnHover: true,
+        hideProgressBar: true,
+        closeButton: false,
+        className: 'p-0 bg-transparent shadow-none ',
+        data: toastData,
+      });
+    }
+  }, [cartsUpdate, carts]);
 
   return (
     <>
@@ -86,6 +169,10 @@ function FloatingCart({}: Props) {
           </div>
         </div>
       )}
+
+      <ToastContainer
+        containerId={"cart-toast"}
+      />
     </>
   );
 };

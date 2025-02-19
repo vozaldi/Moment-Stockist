@@ -8,6 +8,8 @@ import Link from "next/link";
 import { Swiper, SwiperProps, SwiperSlide } from "swiper/react";
 import 'swiper/swiper-bundle.css';
 import Button from "../Button";
+import { useState } from "react";
+import { useShopShallow } from "@/states/shopState";
 
 type Props = SwiperProps & {
   products?: ProductModel[];
@@ -18,6 +20,26 @@ function HomeProductCarousel({
   products = [],
   ...props
 }: Props) {
+  // Hooks
+  const pushShopCartItem = useShopShallow((state) => state.pushShopCartItem);
+
+  // States
+  const [isLoading, setIsLoading] = useState(false);
+
+  // Vars
+  const handleAddToCart = async (product: ProductModel) => {
+    setIsLoading(true);
+
+    pushShopCartItem({
+      product,
+      product_id: product.id,
+      product_name: product.name,
+      qty: 1,
+    });
+
+    setIsLoading(false);
+  };
+
   return (
     <Swiper
       slidesPerView={"auto"}
@@ -62,7 +84,14 @@ function HomeProductCarousel({
                 <p className="text-lg text-black font-semibold mb-0">{numeral(item.price).format('$0,0')}</p>
               )}
 
-              <Button className="uppercase font-bold w-full mt-3" color="primary" size="sm" border>
+              <Button
+                className="uppercase font-bold w-full mt-3"
+                color="primary"
+                size="sm"
+                border
+                loading={isLoading}
+                onClick={() => handleAddToCart(item)}
+              >
                 {`Add to Cart`}
               </Button>
             </div>

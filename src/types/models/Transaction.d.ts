@@ -15,39 +15,19 @@ export type ReservationModel = {
 
 export type CartModel = {
   id?: number | string;
-  branch_id?: number;
-  division_id?: number;
   temp_id?: number | string;
   product_id?: number;
-  pv_id?: number;
-  table_id?: number;
   product_name?: string;
   note?: string;
   qty?: number;
   price?: number;
-  discount?: number;
   subtotal?: number;
   total?: number;
 
-  /**
-   * Cooking status
-   * 
-   * @var cooking_status 1: Pending; 2: Process; 3: Finish; 0: Cancel;
-   */
-  cooking_status?: number;
-  print_count?: number;
   is_active?: number;
+  update_at?: string;
 
-  tax?: number;
-  qtyMin?: number;
-
-  type?: CartItemType;
-  order_type?: ReservationModel['order_type'];
-
-  table?: TableModel;
   product?: ProductModel;
-  variant?: ProductVariant;
-  promo?: PromoModel;
 };
 
 export type CustomerModel = {

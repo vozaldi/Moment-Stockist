@@ -6,6 +6,7 @@ import Link from "next/link";
 import TextField from "../commons/TextField";
 import Button from "../commons/Button";
 import { useRouter } from "next/navigation";
+import { useUiShallow } from "@/states/uiState";
 
 type Props = React.HTMLAttributes<HTMLFormElement> & {
   onRegisterClick?: () => void;
@@ -17,6 +18,7 @@ function LoginForm({
   ...props
 }: Props) {
   // Hooks
+  const setLoginOpen = useUiShallow((state) => state.setLoginOpen);
   const router = useRouter();
 
   const input = useFields({
@@ -33,6 +35,8 @@ function LoginForm({
     }
 
     console.log("Inputs", input.fields);
+
+    setLoginOpen(false);
 
     router.push('/account');
   };
@@ -58,8 +62,6 @@ function LoginForm({
           href={'/auth/register'}
           className="text-fucosan-pink-dark"
           onClick={(e) => {
-            console.log("NGENTOT BABI");
-
             if (onRegisterClick) {
               e.preventDefault();
 
