@@ -1,0 +1,26 @@
+[
+    {
+        "id": 1,
+        "name": "Daniela Pramitha",
+        "comment": "Daniela Pramitha Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed diam nonummy nibh ultricies euismod tincidunt ut labore et dolore magna aliquam. Ut enim ad minim veniam",
+        "image_url": "/assets/images/testimonies/avatar-1.png"
+    },
+    {
+        "id": 2,
+        "name": "Elsha Harley Oktarindra",
+        "comment": "Elsha Harley Oktarindra Nonummy nibh ultricies euismod tincidunt ut labore et dolore magna aliquam. Ut enim ad minim veniam. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed diam",
+        "image_url": "/assets/images/testimonies/avatar-2.png"
+    },
+    {
+        "id": 3,
+        "name": "Kamila Badriyah Fisrih",
+        "comment": "Kamila Badriyah Fisrih Ut enim ad minim veniam. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed diam. Nonummy nibh ultricies euismod tincidunt ut labore et dolore magna aliquam",
+        "image_url": "/assets/images/testimonies/avatar-3.png"
+    },
+    {
+        "id": 3,
+        "name": "Katrina Lestari",
+        "comment": "Elsha Harley Oktarindra Nonummy nibh ultricies euismod tincidunt ut labore et dolore magna aliquam. Ut enim ad minim veniam. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed diam.",
+        "image_url": "/assets/images/testimonies/avatar-2.png"
+    }
+]
