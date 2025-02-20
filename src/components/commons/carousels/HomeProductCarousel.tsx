@@ -54,10 +54,13 @@ function HomeProductCarousel({
                 href={`/product/${item.name}`}
                 className="group/card block w-full"
               >
-                <div className={clsx([
-                  'relative',
-                  "w-100 aspect-square flex items-center justify-center rounded-xl",
-                ])} style={{ backgroundColor: item.color || 'transparent' }}>
+                <div
+                  className={clsx([
+                    'relative',
+                    "w-100 aspect-square flex items-center justify-center rounded-xl",
+                  ])}
+                  style={{ backgroundColor: item.color || 'transparent' }}
+                >
                   <Image
                     src={item.image || `/assets/images/app-logo-vertical.png`}
                     className="w-[152px] h-[152px] object-contain"

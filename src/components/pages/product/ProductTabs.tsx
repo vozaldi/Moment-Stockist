@@ -6,7 +6,7 @@ import clsx from "clsx";
 import { useState } from "react";
 
 const detail = `
-<p>FUCOSAN adalah Premium Product dari <strong>PT Momen Global Internasional</strong>. Merupakan Minuman berserat tinggi dengan rasa Black Currant yang terbuat dari bahan bahan organic alamiah pilihan terbaik. Tidak Hanya mengandung serat larut (soluble fiber) dan serat tidak larut (Insoluble Fiber) yang mampu memenuhi kebutuhan serat harian anda namun juga mengandung berbagai bahan active dengan teknologi terkini untuk menjaga kesehatan tubuh.</p>
+<p><strong>LOREM</strong> adalah Premium Product dari <strong>PT Momen Global Internasional</strong>. Merupakan Minuman berserat tinggi dengan rasa Black Currant yang terbuat dari bahan bahan organic alamiah pilihan terbaik. Tidak Hanya mengandung serat larut (soluble fiber) dan serat tidak larut (Insoluble Fiber) yang mampu memenuhi kebutuhan serat harian anda namun juga mengandung berbagai bahan active dengan teknologi terkini untuk menjaga kesehatan tubuh.</p>
 `;
 
 const howToUse = `<p>TBD</p>`;
@@ -49,7 +49,7 @@ function ProductTabs({
       </div>
 
       {tabActive === 0 && (
-        <div className="article-content" dangerouslySetInnerHTML={{ __html: detail }} />
+        <div className="article-content" dangerouslySetInnerHTML={{ __html: product.description || detail.replace("LOREM", product.name || "Lorem ipsum") }} />
       )}
 
       {tabActive === 1 && (

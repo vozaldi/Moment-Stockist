@@ -20,7 +20,15 @@ export default async function Home() {
     method: 'get',
   }).then(({ data }) => {
     if (data?.status === 'success') {
-      return data.data || []; 
+      const items: any[] = data.data || [];
+      const models: ProductModel[] = items.map((item): ProductModel => {
+        return {
+          ...item,
+          price: Number(item.price),
+        };
+      });
+
+      return models; 
     }
 
     throw data;

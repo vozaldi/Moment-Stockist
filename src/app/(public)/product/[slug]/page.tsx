@@ -3,6 +3,7 @@ import KonsultasiGratisSection from "@/components/commons/KonsultasiGratisSectio
 import ProductTabs from "@/components/pages/product/ProductTabs";
 import { appConfig } from "@/lib/config";
 import { ProductModel } from "@/types/models";
+import axios from "axios";
 import clsx from "clsx";
 import { Metadata } from "next";
 import Image from "next/image";
@@ -13,16 +14,39 @@ export const metadata: Metadata = {
   description: "Lorem ipsum dolor sit amet",
 };
 
-const product: ProductModel = {
-  id: 1,
+const productDummy: ProductModel = {
   name: `Moment Fucosan`,
-  price: 650000,
   color: '#cacef4',
-  image: '/assets/images/products/fucosan.png',
   decoration_url: '/assets/images/decorations/decoration-fucosan.png',
 };
 
-export default function ProductSlug() {
+export default async function ProductSlug({
+  params: { slug },
+}: { params: { slug: string } }) {
+  const model: ProductModel | null = await axios({
+    url: appConfig('api_url') + '/products',
+    method: 'get',
+  }).then(({ data }) => {
+    if (data?.status === 'success') {
+      const items: any[] = data.data || [];
+      const models: ProductModel[] = items.map((item): ProductModel => {
+        return {
+          ...item,
+          price: Number(item.price),
+        };
+      });
+
+      return models.find((item) => item.name === decodeURI(slug)) || null; 
+    }
+
+    throw data;
+  }).catch((e) => null);
+
+  const color = ['#cacef4', '#d2ecc5', '#eee4c3', '#ffe1e1', '#ffdbdb', '#d0eeff', '#f6f4d3', '#f5e5d6'];
+  const product: ProductModel = { ...productDummy, ...model };
+
+  product.color = color[(product.id || 0) - 1];
+
   return (
     <>
       <div className="container mt-32 mx-auto">
@@ -34,7 +58,7 @@ export default function ProductSlug() {
           ])}
           style={{ background: product.color }}
         >
-          <div className="grow shrink bg-black/10 rounded-s-2xl py-10 px-8">
+          <div className="flex-1 bg-black/10 rounded-s-2xl py-10 px-8">
             <h1 className="text-2xl md:text-4xl font-bold">
               {product.name}
             </h1>
