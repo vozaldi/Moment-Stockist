@@ -26,9 +26,9 @@ const CartToast = ({
       style={{ backgroundColor: cart.product?.color }}
     >
       <div className="w-24 h-24 flex items-center justify-center">
-        {!!cart.product?.image_url && (
+        {!!cart.product?.image && (
           <Image
-            src={cart.product.image_url}
+            src={cart.product.image}
             alt={`Produk ${cart.product.name}`}
             className="object-contain max-w-full max-h-full"
             width={200}

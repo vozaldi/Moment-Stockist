@@ -18,7 +18,7 @@ const product: ProductModel = {
   name: `Moment Fucosan`,
   price: 650000,
   color: '#cacef4',
-  image_url: '/assets/images/products/fucosan.png',
+  image: '/assets/images/products/fucosan.png',
   decoration_url: '/assets/images/decorations/decoration-fucosan.png',
 };
 
@@ -51,10 +51,10 @@ export default function ProductSlug() {
           </div>
 
           <div className="p-12 relative flex items-center justify-center">
-            {!!product.image_url && (
+            {!!product.image && (
               <Image
                 className="max-w-none w-[360px] h-[360px] object-contain -m-12"
-                src={product.image_url}
+                src={product.image}
                 alt={`Image ${product.name}`}
                 width={400}
                 height={400}

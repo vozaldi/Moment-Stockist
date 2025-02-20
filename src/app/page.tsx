@@ -8,11 +8,24 @@ import FloatingCart from "@/components/layouts/public/FloatingCart";
 import FooterPublic from "@/components/layouts/public/FooterPublic";
 import HeaderNavPublic from "@/components/layouts/public/HeaderNavPublic";
 import { appConfig } from "@/lib/config";
+import { ProductModel } from "@/types/models";
+import axios from "axios";
 import clsx from "clsx";
 import Image from "next/image";
 import Link from "next/link";
 
-export default function Home() {
+export default async function Home() {
+  const products: ProductModel[] = await axios({
+    url: appConfig('api_url') + '/products',
+    method: 'get',
+  }).then(({ data }) => {
+    if (data?.status === 'success') {
+      return data.data || []; 
+    }
+
+    throw data;
+  }).catch((e) => []);
+
   return (
     <>
       <HeaderNavPublic />
@@ -147,68 +160,19 @@ export default function Home() {
 
           <div className="max-w-full mt-12">
             <HomeProductCarousel
-              products={[{
-                id: 1,
-                name: `Moment Fucosan`,
-                price: 650000,
-                color: '#cacef4',
-                image_url: '/assets/images/products/fucosan.png',
-                decoration_url: '/assets/images/decorations/decoration-fucosan.png',
-              }, {
-                id: 2,
-                name: `Zmooth`,
-                price: 650000,
-                color: '#d2ecc5',
-                image_url: '/assets/images/products/zmooth.png',
-                decoration_url: '/assets/images/decorations/decoration-zmooth.png',
-              }, {
-                id: 3,
-                name: `Moment Essensia`,
-                price: 650000,
-                color: '#eee4c3',
-                image_url: '/assets/images/products/essensia.png',
-                decoration_url: '/assets/images/decorations/decoration-essensia.png',
-              }, {
-                id: 4,
-                name: `Moment Glucogen`,
-                price: 650000,
-                color: '#ffe1e1',
-                image_url: '/assets/images/products/glucogen.png',
-                decoration_url: '/assets/images/decorations/decoration-glucogen.png',
-              }, {
-                id: 5,
-                name: `Zhield`,
-                price: 650000,
-                color: '#ffdbdb',
-                image_url: '/assets/images/products/zhield.png',
-                decoration_url: '/assets/images/decorations/decoration-zhield.png',
-              }, {
-                id: 6,
-                name: `Morex`,
-                price: 650000,
-                color: '#d0eeff',
-                image_url: '/assets/images/products/morex.png',
-                decoration_url: '/assets/images/decorations/decoration-morex.png',
-              }, {
-                id: 7,
-                name: `Moment Propolis`,
-                price: 650000,
-                color: '#f6f4d3',
-                image_url: '/assets/images/products/propolis.png',
-              }, {
-                id: 8,
-                name: `Moment Coffe`,
-                price: 650000,
-                color: '#f5e5d6',
-              }, {
-                id: 9,
-                name: `Softly`,
-                price: 650000,
-              }, {
-                id: 10,
-                name: `Creamy Essence`,
-                price: 650000,
-              }]}
+              products={products.map((item, index) => {
+                const color = ['#cacef4', '#d2ecc5', '#eee4c3', '#ffe1e1', '#ffdbdb', '#d0eeff', '#f6f4d3', '#f5e5d6'][index];
+                const decoration_url = [
+                  '/assets/images/decorations/decoration-fucosan.png',
+                  '/assets/images/decorations/decoration-zmooth.png',
+                  '/assets/images/decorations/decoration-essensia.png',
+                  '/assets/images/decorations/decoration-glucogen.png',
+                  '/assets/images/decorations/decoration-zhield.png',
+                  '/assets/images/decorations/decoration-morex.png',
+                ][index];
+
+                return { ...item, color, decoration_url };
+              })}
             />
           </div>
         </section>

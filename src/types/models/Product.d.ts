@@ -1,9 +1,10 @@
 export type ProductModel = {
   id?: number;
+  sku?: string;
   name?: string;
   price?: number;
   color?: string;
-  image_url?: string;
+  image?: string;
   decoration_url?: string;
 };
 

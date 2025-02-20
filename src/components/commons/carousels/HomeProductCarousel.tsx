@@ -59,7 +59,7 @@ function HomeProductCarousel({
                   "w-100 aspect-square flex items-center justify-center rounded-xl",
                 ])} style={{ backgroundColor: item.color || 'transparent' }}>
                   <Image
-                    src={item.image_url || `/assets/images/app-logo-vertical.png`}
+                    src={item.image || `/assets/images/app-logo-vertical.png`}
                     className="w-[152px] h-[152px] object-contain"
                     alt={`Image ${item.name}`}
                     width={152}
