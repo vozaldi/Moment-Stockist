@@ -1,4 +1,7 @@
 import Button from "@/components/commons/Button";
+import AddressAddButtonModal from "@/components/layouts/account/AddressAddButtonModal";
+import PasswordButtonModal from "@/components/layouts/account/PasswordButtonModal";
+import ProfileButtonModal from "@/components/layouts/account/ProfileButtonModal";
 import Image from "next/image";
 
 export default function Account() {
@@ -40,20 +43,10 @@ export default function Account() {
               </div>
             ))}
           </div>
+          
+          <ProfileButtonModal className="w-full mt-6" />
 
-          <Button
-            className="w-full mt-6 !rounded-lg"
-            color="primary"
-          >
-            {`Update Profile`}
-          </Button>
-
-          <Button
-            className="w-full mt-3 !rounded-lg"
-            color="primary"
-          >
-            {`Change Password`}
-          </Button>
+          <PasswordButtonModal className="w-full mt-3" />
         </div>
       </div>
 
@@ -145,11 +138,7 @@ export default function Account() {
           ))}
 
           <div className="sticky bottom-0 py-4 -mb-2 bg-slate-200">
-            <Button
-              className="border-2 border-fucosan-pink text-fucosan-pink w-full !rounded-lg hover:bg-primary/10 font-semibold"
-            >
-              {`Add Address`}
-            </Button>
+            <AddressAddButtonModal />
           </div>
         </div>
       </div>
