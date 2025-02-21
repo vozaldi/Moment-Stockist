@@ -100,7 +100,7 @@ function FloatingCart({}: Props) {
         pauseOnHover: true,
         hideProgressBar: true,
         closeButton: false,
-        className: 'p-0 bg-transparent shadow-none ',
+        className: '!p-0 !bg-transparent !shadow-none ',
         data: toastData,
       });
     }
