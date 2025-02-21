@@ -38,7 +38,7 @@ function KonsultasiGratisSection({
           </p>
 
           <Button
-            className="mt-12 inline-flex items-center"
+            className="mt-12 inline-flex items-center rounded-full"
             type="link"
             href={'https://wa.me/6282110000000'}
             target="_blank"

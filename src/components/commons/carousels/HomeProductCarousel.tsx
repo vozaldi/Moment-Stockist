@@ -88,7 +88,7 @@ function HomeProductCarousel({
               )}
 
               <Button
-                className="uppercase font-bold w-full mt-3"
+                className="uppercase font-bold w-full mt-3 rounded-full"
                 color="primary"
                 size="sm"
                 border

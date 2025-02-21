@@ -22,7 +22,7 @@ function Button(props: Props) {
 
   // Vars
   const classNames = clsx([
-    { 'rounded-full': !props.className?.includes('rounded') },
+    { 'rounded-lg': !props.className?.includes('rounded') },
     color === 'primary' && 'bg-primary text-white hover:bg-primary/80',
     color === 'secondary' && 'bg-secondary text-white hover:bg-secondary/80',
     color === 'fucosan-pink' && 'bg-fucosan-pink text-white hover:bg-fucosan-pink/80',
