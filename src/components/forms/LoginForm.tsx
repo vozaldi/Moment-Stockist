@@ -7,6 +7,7 @@ import TextField from "../commons/TextField";
 import Button from "../commons/Button";
 import { useRouter } from "next/navigation";
 import { useUiShallow } from "@/states/uiState";
+import { useEffect, useState } from "react";
 
 type Props = React.HTMLAttributes<HTMLFormElement> & {
   onRegisterClick?: () => void;
@@ -26,8 +27,24 @@ function LoginForm({
     password: '',
   });
 
+  // States
+  const [isSaving, setIsSaving] = useState(false);
+  const [isFinished, setIsFinished] = useState(false);
+
+  // Effects
+  useEffect(() => {
+    if (isFinished) {
+      setTimeout(() => {
+        setLoginOpen(false);
+        setIsFinished(false);
+
+        router.push('/account');
+      }, 2000);
+    }
+  }, [isFinished, setLoginOpen, router]);
+
   // Vars
-  const handleSubmit = () => {
+  const handleSubmit = async () => {
     if (!input.fields.username) {
       return input.handleErrorShow('username', `Please enter your username`);
     } else if (!input.fields.password) {
@@ -36,12 +53,31 @@ function LoginForm({
 
     console.log("Inputs", input.fields);
 
-    setLoginOpen(false);
+    setIsSaving(true);
 
-    router.push('/account');
+    return new Promise((resolve) => {
+      setTimeout(() => {
+        resolve(null);
+      }, 500);
+    }).then(() => {
+      setIsFinished(true);
+    }).finally(() => {
+      setIsSaving(false);
+    });
   };
 
-  return (
+  return isFinished ? (
+    <div className={clsx(['py-2', className])}>
+      <h3 className="text-xl font-bold uppercase text-center">
+        {`Successfully logged in`}
+      </h3>
+
+      <p className="mt-4 md:text-lg text-center">
+        {`Welcome back`}
+        {' '}<strong>{`Delta Gamma`}</strong>
+      </p>
+    </div>
+  ) : (
     <form
       className={clsx([className])}
       onSubmit={(e) => {
@@ -99,6 +135,7 @@ function LoginForm({
       <Button
         className="w-full mt-4 !rounded-lg"
         color="fucosan-pink"
+        loading={isSaving}
       >
         {`Login`}
       </Button>
