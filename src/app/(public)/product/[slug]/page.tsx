@@ -21,8 +21,10 @@ const productDummy: ProductModel = {
 };
 
 export default async function ProductSlug({
-  params: { slug },
-}: { params: { slug: string } }) {
+  params: promiseParams,
+}: { params?: Promise<{ slug: string }> }) {
+  const params = await promiseParams;
+  const slug = params?.slug || '';
   const model: ProductModel | null = await axios({
     url: appConfig('api_url') + '/products',
     method: 'get',
