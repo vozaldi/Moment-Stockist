@@ -16,6 +16,7 @@ function HeaderNavPublic({
   ...props
 }: Props) {
   // Hooks
+  const carts = useShopShallow((state) => state.carts);
   const setLoginOpen = useUiShallow((state) => state.setLoginOpen);
   const setCartOpen = useShopShallow((state) => state.setCartOpen);
 
@@ -55,7 +56,7 @@ function HeaderNavPublic({
             >
               <IoBagOutline size={32} />
 
-              <span className="ml-2">{`(0)`}</span>
+              <span className="ml-2">{`(${carts.length})`}</span>
             </Button>
           </li>
         </ul>

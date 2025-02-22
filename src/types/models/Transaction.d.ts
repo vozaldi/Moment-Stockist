@@ -39,32 +39,10 @@ export type CustomerModel = {
   branch?: string;
 };
 
-export type TableModel = {
+export type AddressModel = {
   id?: number;
+  title?: string;
   name?: string;
-};
-
-export type DiscountModel = {
-  id?: number;
-  name?: string;
-  amount?: number;
-};
-
-export type TaxModel = {
-  id?: number;
-  name?: string;
-  percentage?: string;
-  is_default?: number;
-};
-
-export type PromoModel = {
-  id?: number;
-  name?: string;
-  description?: string;
-  date_from?: string;
-  date_till?: string;
-  discount_nominal?: number;
-  discount_percent?: number;
-  discount_max?: number;
-  is_transaction?: number;
+  address?: string;
+  phone?: string;
 };
