@@ -183,300 +183,307 @@ function FloatingCart({}: Props) {
         )}
       </Button>
 
-      {!!cartOpen && (
-        <div className="fixed inset-0 p-4 z-[700]">
-          <div
-            className="absolute inset-0 bg-white/50 backdrop-blur-md"
-            onClick={() => setCartOpen(false)}
-          />
+      <div className={clsx([
+        "fixed inset-0 p-4 z-[700]",
+        !cartOpen && "!opacity-0 [visibility:hidden]",
+      ])}>
+        <div
+          className={clsx([
+            "absolute inset-0 bg-white/50 backdrop-blur-md",
+            "transition-opacity duration-300 opacity-0",
+            cartOpen && "!opacity-100"
+          ])}
+          onClick={() => setCartOpen(false)}
+        />
 
-          <div className={clsx([
-            'w-[400px] absolute top-4 bottom-4 right-4 bg-white rounded-xl shadow-lg',
-            'flex flex-col'
-          ])}>
-            <div className="flex items-center mx-4 border-b-4 border-primary py-2 mt-2">
-              <Button
-                className="hover:bg-black/10 -my-4"
-                size={32}
-                onClick={() => {
-                  if (step === STEP.CART) {
-                    return setCartOpen(false);
-                  } else if (step === STEP.DONE) {
-                    setStep(0);
+        <div className={clsx([
+          'w-[400px] absolute top-4 bottom-4 right-4 bg-white rounded-xl shadow-lg',
+          'flex flex-col',
+          "transition-transform duration-300 translate-x-0",
+          !cartOpen && "!translate-x-full",
+        ])}>
+          <div className="flex items-center mx-4 border-b-4 border-primary py-2 mt-2">
+            <Button
+              className="hover:bg-black/10 -my-4"
+              size={32}
+              onClick={() => {
+                if (step === STEP.CART) {
+                  return setCartOpen(false);
+                } else if (step === STEP.DONE) {
+                  setStep(0);
 
-                    return setCartOpen(false);
-                  }
+                  return setCartOpen(false);
+                }
 
-                  step !== 1 && setStep(state => Math.max(1, state - 1));
-                }}
-              >
-                <IoArrowBack size={24} />
-              </Button>
+                step !== 1 && setStep(state => Math.max(1, state - 1));
+              }}
+            >
+              <IoArrowBack size={24} />
+            </Button>
 
-              <div className="grow">
-                <h3 className="text-xl font-semibold text-fucosan-pink-dark text-center">
-                  {step === STEP.CART && `My Cart`}
-                  {step === STEP.ADDRESS && `Delivery Information`}
-                  {step === STEP.STORE && `Select Store`}
-                  {step === STEP.CHECKOUT && `Payment`}
-                  {step === STEP.DONE && `Payment`}
-                </h3>
-              </div>
+            <div className="grow">
+              <h3 className="text-xl font-semibold text-fucosan-pink-dark text-center">
+                {step === STEP.CART && `My Cart`}
+                {step === STEP.ADDRESS && `Delivery Information`}
+                {step === STEP.STORE && `Select Store`}
+                {step === STEP.CHECKOUT && `Payment`}
+                {step === STEP.DONE && `Payment`}
+              </h3>
             </div>
+          </div>
 
-            {step === STEP.CART && (
-              <div className="flex-1 overflow-y-auto py-4 px-4">
-                {carts.map((item, index) => {
-                  return (
-                    <CartItemCard
-                      key={item.product_id}
-                      className={clsx([!index ? '' : 'mt-2'])}
-                      cart={item}
-                    />
-                  );
-                })}
-              </div>
-            )}
+          {step === STEP.CART && (
+            <div className="flex-1 overflow-y-auto py-4 px-4">
+              {carts.map((item, index) => {
+                return (
+                  <CartItemCard
+                    key={item.product_id}
+                    className={clsx([!index ? '' : 'mt-2'])}
+                    cart={item}
+                  />
+                );
+              })}
+            </div>
+          )}
 
-            {step === STEP.ADDRESS && (
-              <div className="flex-1 overflow-y-auto py-4 px-4">
-                {[{ 
+          {step === STEP.ADDRESS && (
+            <div className="flex-1 overflow-y-auto py-4 px-4">
+              {[{ 
+                id: 1,
+                title: `Alpha`,
+                name: `Alpha Beta`,
+                address: `Jl. Majapahit No. 1, Jakarta Selatan, Indonesia`,
+                phone: `08123456789`,
+              }, { 
+                id: 2,
+                title: `Beta`,
+                name: `Cak Cak`,
+                address: `Jl. Alpha No. 2, Surabaya, Indonesia`,
+                phone: `08123456789`,
+              }].map((item, index) => {
+                const isActive = input.fields.address_id === item.id;
+
+                return (
+                  <AddressButtonCard
+                    key={item.id}
+                    className={clsx([
+                      'border border-transparent !px-4 !py-2',
+                      !index ? '' : 'mt-2',
+                      !isActive && '!bg-slate-100',
+                      isActive && '!border-slate-400 !bg-slate-200',
+                    ])}
+                    address={item}
+                    onClick={() => input.handleFieldChange('address_id', item.id)}
+                  />
+                );
+              })}
+            </div>
+          )}
+
+          {step === STEP.STORE && (
+            <div className="flex-1 overflow-y-auto py-4 px-4">
+              {[{
+                id: 1,
+                name: `Delta Store`,
+                address: `Jl. Delta No. 1, Jakarta Selatan, Indonesia`,
+                phone: `08123456789`,
+              }, {
+                id: 2,
+                name: `Stockist Surabaya`,
+                address: `Jl. Alpha No. 2, Surabaya, Indonesia`,
+                phone: `08123456789`,
+              }].map((item, index) => {
+                const isActive = input.fields.store_id === item.id;
+
+                return (
+                  <Button
+                    key={item.id}
+                    className={clsx([
+                      "text-left w-full bg-white shadow-sm hover:shadow-md !px-4 !py-2",
+                      'border border-transparent',
+                      !index ? '' : 'mt-2',
+                      !isActive && '!bg-slate-100',
+                      isActive && '!border-slate-400 !bg-slate-200',
+                    ])}
+                    onClick={() => input.handleFieldChange('store_id', item.id)}
+                  >
+                    <h1 className="font-bold">{item.name}</h1>
+
+                    <p className="mt-1 text-gray-500 text-xs">
+                      {item.address}
+                    </p>
+
+                    <a href={`tel:${item.phone}`} className="mt-1 text-gray-500 text-xs hover:underline">
+                      {item.phone}
+                    </a>
+                  </Button>
+                );
+              })}
+            </div>
+          )}
+
+          {step === STEP.CHECKOUT && (
+            <div className="flex-1 overflow-y-auto pt-4 pb-6 px-4">
+              {carts.map((item, index) => {
+                return (
+                  <CartItemCard
+                    key={item.product_id}
+                    className={clsx([!index ? '' : 'mt-2'])}
+                    cart={item}
+                  />
+                );
+              })}
+
+              <h3 className="mt-6 px-3 text-sm font-medium">
+                {`Delivery Information`}
+              </h3>
+
+              <AddressButtonCard
+                className="pointer-events-none !bg-slate-100 !px-4 !py-2 mt-1"
+                address={{ 
                   id: 1,
                   title: `Alpha`,
                   name: `Alpha Beta`,
                   address: `Jl. Majapahit No. 1, Jakarta Selatan, Indonesia`,
                   phone: `08123456789`,
-                }, { 
-                  id: 2,
-                  title: `Beta`,
-                  name: `Cak Cak`,
-                  address: `Jl. Alpha No. 2, Surabaya, Indonesia`,
-                  phone: `08123456789`,
-                }].map((item, index) => {
-                  const isActive = input.fields.address_id === item.id;
+                }}
+              />
 
-                  return (
-                    <AddressButtonCard
-                      key={item.id}
-                      className={clsx([
-                        'border border-transparent !px-4 !py-2',
-                        !index ? '' : 'mt-2',
-                        !isActive && '!bg-slate-100',
-                        isActive && '!border-slate-400 !bg-slate-200',
-                      ])}
-                      address={item}
-                      onClick={() => input.handleFieldChange('address_id', item.id)}
-                    />
-                  );
-                })}
-              </div>
-            )}
+              <h3 className="mt-4 px-3 text-sm font-medium">
+                {`Payment Method`}
+              </h3>
 
-            {step === STEP.STORE && (
-              <div className="flex-1 overflow-y-auto py-4 px-4">
-                {[{
-                  id: 1,
-                  name: `Delta Store`,
-                  address: `Jl. Delta No. 1, Jakarta Selatan, Indonesia`,
-                  phone: `08123456789`,
-                }, {
-                  id: 2,
-                  name: `Stockist Surabaya`,
-                  address: `Jl. Alpha No. 2, Surabaya, Indonesia`,
-                  phone: `08123456789`,
-                }].map((item, index) => {
-                  const isActive = input.fields.store_id === item.id;
+              <SelectField
+                className="mt-1"
+                inputClassName="!border-slate-300 !bg-slate-200"
+                onChange={(e) => input.handleFieldChange('payment_method', e.target.value)}
+                error={input.isFieldError('payment_method')}
+                message={input.error.message}
+              >
+                <option>{`-- Select Payment Method ---`}</option>
 
-                  return (
-                    <Button
-                      key={item.id}
-                      className={clsx([
-                        "text-left w-full bg-white shadow-sm hover:shadow-md !px-4 !py-2",
-                        'border border-transparent',
-                        !index ? '' : 'mt-2',
-                        !isActive && '!bg-slate-100',
-                        isActive && '!border-slate-400 !bg-slate-200',
-                      ])}
-                      onClick={() => input.handleFieldChange('store_id', item.id)}
-                    >
-                      <h1 className="font-bold">{item.name}</h1>
-
-                      <p className="mt-1 text-gray-500 text-xs">
-                        {item.address}
-                      </p>
-
-                      <a href={`tel:${item.phone}`} className="mt-1 text-gray-500 text-xs hover:underline">
-                        {item.phone}
-                      </a>
-                    </Button>
-                  );
-                })}
-              </div>
-            )}
-  
-            {step === STEP.CHECKOUT && (
-              <div className="flex-1 overflow-y-auto pt-4 pb-6 px-4">
-                {carts.map((item, index) => {
-                  return (
-                    <CartItemCard
-                      key={item.product_id}
-                      className={clsx([!index ? '' : 'mt-2'])}
-                      cart={item}
-                    />
-                  );
-                })}
-
-                <h3 className="mt-6 px-3 text-sm font-medium">
-                  {`Delivery Information`}
-                </h3>
-
-                <AddressButtonCard
-                  className="pointer-events-none !bg-slate-100 !px-4 !py-2 mt-1"
-                  address={{ 
-                    id: 1,
-                    title: `Alpha`,
-                    name: `Alpha Beta`,
-                    address: `Jl. Majapahit No. 1, Jakarta Selatan, Indonesia`,
-                    phone: `08123456789`,
-                  }}
-                />
-
-                <h3 className="mt-4 px-3 text-sm font-medium">
-                  {`Payment Method`}
-                </h3>
-
-                <SelectField
-                  className="mt-1"
-                  inputClassName="!border-slate-300 !bg-slate-200"
-                  onChange={(e) => input.handleFieldChange('payment_method', e.target.value)}
-                  error={input.isFieldError('payment_method')}
-                  message={input.error.message}
-                >
-                  <option>{`-- Select Payment Method ---`}</option>
-
-                  {[
-                    "Bank BCA (1234) - Alpha",
-                    "Bank Mandiri (1234) - Alpha",
-                  ].map((item, index) => (
-                    <option key={item} value={item}>{item}</option>
-                  ))}
-                </SelectField>
-
-                <h3 className="mt-4 px-3 text-sm font-medium">
-                  {`Couriers`}
-                </h3>
-
-                <SelectField
-                  className="mt-1"
-                  inputClassName="!border-slate-300 !bg-slate-200"
-                  onChange={(e) => input.handleFieldChange('courier', e.target.value)}
-                  error={input.isFieldError('courier')}
-                  message={input.error.message}
-                >
-                  <option>{`-- Select Courier ---`}</option>
-
-                  {[
-                    "Jalur Nugraha Ekakurir (JNE)",
-                    "Express",
-                    "SiCepat Express",
-                    "Citra Van Titipan Kilat (TIKI)",
-                    "POS Indonesia (POS)",
-                  ].map((item, index) => (
-                    <option key={item} value={item}>{item}</option>
-                  ))}
-                </SelectField>
-              </div>
-            )}
-  
-            {step === STEP.DONE && (
-              <div className="flex-1 flex flex-col items-center justify-center overflow-y-auto py-8 px-4">
-                <Image
-                  src="/assets/images/pictures/order-placed.svg"
-                  alt="Checkout Success"
-                  className="w-36 h-36"
-                  width={200}
-                  height={200}
-                />
-
-                <h3 className="text-2xl font-bold mt-4 text-primary">
-                  {`Order Placed`}
-                </h3>
-
-                <p className="mt-2">
-                  {`Your order was placed successfully. please make a payment to bank account bellow.`}
-                </p>
-
-                <BankCard className="mt-3" />
-              </div>
-            )}
-
-            {step === STEP.CART && (
-              <div className="mx-4 border-t-4 border-primary py-4">
-                {[{
-                  label: `Subtotal`,
-                  value: numeral(grandTotal).format('$0,0'),
-                }].map((item, index) => (
-                  <div key={item.label} className={clsx(["flex items-center", !!index && 'mt-1'])}>
-                    <p className="grow shrink pr-4">{item.label}</p>
-
-                    <p className="text-right">{item.value}</p>
-                  </div>
+                {[
+                  "Bank BCA (1234) - Alpha",
+                  "Bank Mandiri (1234) - Alpha",
+                ].map((item, index) => (
+                  <option key={item} value={item}>{item}</option>
                 ))}
-              </div>
-            )}
+              </SelectField>
 
-            {step === STEP.CHECKOUT && (
-              <div className="px-4 border-t-2 border-gray-300 border-dashed py-4">
-                {[{
-                  label: `Subtotal`,
-                  value: numeral(grandTotal).format('$0,0'),
-                }, {
-                  label: `Delivery Cost`,
-                  value: numeral(65000).format('$0,0'),
-                  show: !!input.fields.courier,
-                }].filter(({ show }) => show !== false).map((item, index) => (
-                  <div key={item.label} className={clsx(["flex items-center text-sm", !!index && 'mt-1'])}>
-                    <p className="grow shrink pr-4">{item.label}</p>
+              <h3 className="mt-4 px-3 text-sm font-medium">
+                {`Couriers`}
+              </h3>
 
-                    <p className="text-right">{item.value}</p>
-                  </div>
+              <SelectField
+                className="mt-1"
+                inputClassName="!border-slate-300 !bg-slate-200"
+                onChange={(e) => input.handleFieldChange('courier', e.target.value)}
+                error={input.isFieldError('courier')}
+                message={input.error.message}
+              >
+                <option>{`-- Select Courier ---`}</option>
+
+                {[
+                  "Jalur Nugraha Ekakurir (JNE)",
+                  "Express",
+                  "SiCepat Express",
+                  "Citra Van Titipan Kilat (TIKI)",
+                  "POS Indonesia (POS)",
+                ].map((item, index) => (
+                  <option key={item} value={item}>{item}</option>
                 ))}
+              </SelectField>
+            </div>
+          )}
 
-                <div className="mt-2 pt-2 border-t-2 border-primary">
-                  <div className="flex items-center text-sm font-bold">
-                    <p className="grow shrink pr-4">
-                      {`Grand Total`}
-                    </p>
+          {step === STEP.DONE && (
+            <div className="flex-1 flex flex-col items-center justify-center overflow-y-auto py-8 px-4">
+              <Image
+                src="/assets/images/pictures/order-placed.svg"
+                alt="Checkout Success"
+                className="w-36 h-36"
+                width={200}
+                height={200}
+              />
 
-                    <p className="text-right">
-                      {numeral((grandTotal || 0) + 65000).format('$0,0')}
-                    </p>
-                  </div>
+              <h3 className="text-2xl font-bold mt-4 text-primary">
+                {`Order Placed`}
+              </h3>
+
+              <p className="mt-2">
+                {`Your order was placed successfully. please make a payment to bank account bellow.`}
+              </p>
+
+              <BankCard className="mt-3" />
+            </div>
+          )}
+
+          {step === STEP.CART && (
+            <div className="mx-4 border-t-4 border-primary py-4">
+              {[{
+                label: `Subtotal`,
+                value: numeral(grandTotal).format('$0,0'),
+              }].map((item, index) => (
+                <div key={item.label} className={clsx(["flex items-center", !!index && 'mt-1'])}>
+                  <p className="grow shrink pr-4">{item.label}</p>
+
+                  <p className="text-right">{item.value}</p>
                 </div>
+              ))}
+            </div>
+          )}
 
-                {input.isFieldError() && (
-                  <div className="mt-2 text-xs text-red-500">
-                    {input.error.message}
-                  </div>
-                )}
+          {step === STEP.CHECKOUT && (
+            <div className="px-4 border-t-2 border-gray-300 border-dashed py-4">
+              {[{
+                label: `Subtotal`,
+                value: numeral(grandTotal).format('$0,0'),
+              }, {
+                label: `Delivery Cost`,
+                value: numeral(65000).format('$0,0'),
+                show: !!input.fields.courier,
+              }].filter(({ show }) => show !== false).map((item, index) => (
+                <div key={item.label} className={clsx(["flex items-center text-sm", !!index && 'mt-1'])}>
+                  <p className="grow shrink pr-4">{item.label}</p>
+
+                  <p className="text-right">{item.value}</p>
+                </div>
+              ))}
+
+              <div className="mt-2 pt-2 border-t-2 border-primary">
+                <div className="flex items-center text-sm font-bold">
+                  <p className="grow shrink pr-4">
+                    {`Grand Total`}
+                  </p>
+
+                  <p className="text-right">
+                    {numeral((grandTotal || 0) + 65000).format('$0,0')}
+                  </p>
+                </div>
               </div>
-            )}
 
-            <Button
-              className="!rounded-t-none !rounded-b-xl opacity-60 hover:opacity-50 text-lg"
-              color="fucosan-pink-dark"
-              loading={isSaving}
-              onClick={() => handleNextStep()}
-            >
-              {step === STEP.CART && `Checkout`}
-              {step === STEP.ADDRESS && `Next`}
-              {step === STEP.STORE && `Next`}
-              {step === STEP.CHECKOUT && `Checkout`}
-              {step === STEP.DONE && `Order Detail`}
-            </Button>
-          </div>
+              {input.isFieldError() && (
+                <div className="mt-2 text-xs text-red-500">
+                  {input.error.message}
+                </div>
+              )}
+            </div>
+          )}
+
+          <Button
+            className="!rounded-t-none !rounded-b-xl opacity-60 hover:opacity-50 text-lg"
+            color="fucosan-pink-dark"
+            loading={isSaving}
+            onClick={() => handleNextStep()}
+          >
+            {step === STEP.CART && `Checkout`}
+            {step === STEP.ADDRESS && `Next`}
+            {step === STEP.STORE && `Next`}
+            {step === STEP.CHECKOUT && `Checkout`}
+            {step === STEP.DONE && `Order Detail`}
+          </Button>
         </div>
-      )}
+      </div>
 
       <ToastContainer
         containerId={"cart-toast"}

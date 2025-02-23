@@ -116,7 +116,7 @@ export default function Order() {
                   />
                 </div>
 
-                <div className="grow shrink pl-3 text-xs">
+                <div className="flex-1 shrink pl-3 text-xs">
                   <p className="text-xs text-gray-900">{`BCA (Bank Central Asia)`}</p>
 
                   <p className="text-gray-700 mt-2">

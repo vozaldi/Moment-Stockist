@@ -39,7 +39,7 @@ export default async function Home() {
       <HeaderNavPublic />
 
       <main>
-        <section className="relative flex items-center justify-center w-full h-[100vh] max-h-[800px]">
+        <section className="relative flex items-center justify-center w-full h-[100vh] max-h-[800px] z-50">
           <Image
             className="absolute inset-0 object-cover w-full h-full pointer-events-none"
             src={'/assets/images/pictures/bg-header.jpg'}
@@ -105,6 +105,12 @@ export default async function Home() {
             </div>
           </div>
         </section>
+
+        <div className="fixed top-0 left-0 w-full p-4 lg:px-8 z-20">
+          <div className="relative container mx-auto">
+            <HeaderNavPublic className="bg-white/50 rounded-full backdrop-blur-md shadow-lg px-4" />
+          </div>
+        </div>
 
         <section className="container px-4 mx-auto pb-8 overflow-hidden">
           <div className="max-w-6xl mx-auto grid grid-cols-9 gap-x-8 gap-y-3 place-content-center">

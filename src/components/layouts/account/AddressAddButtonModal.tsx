@@ -25,18 +25,29 @@ function AddressAddButtonModal({
         {`Add Address`}
       </Button>
 
-      {createPortal((!isOpen ? null : (
-        <div className="fixed inset-0 p-4 z-[700] flex items-center justify-center">
+      {createPortal((
+        <div className={clsx([
+          "fixed inset-0 p-4 z-[700] flex items-center justify-center",
+          !isOpen && "opacity-0 [visibility:hidden]",
+        ])}>
           <div
-            className="absolute inset-0 bg-black/30"
+            className={clsx([
+              "absolute inset-0 bg-black/30",
+              "transition-opacity duration-300 opacity-0",
+              isOpen && "!opacity-100"
+            ])}
             onClick={() => setIsOpen(false)}
           />
 
-          <div className="relative w-[560px] max-w-full bg-white/70 backdrop-blur-lg border border-white shadow-lg rounded-2xl py-8 px-8">
+          <div className={clsx([
+            "relative w-[560px] max-w-full bg-white/70 backdrop-blur-lg border border-white shadow-lg rounded-2xl py-8 px-8",
+            "transition-all duration-300 opacity-0 translate-y-[10vh]",
+            isOpen && "!translate-y-0 !opacity-100",
+          ])}>
             <AddressAddForm onSubmitted={() => setIsOpen(false)} />
           </div>
         </div>
-      )), document.body)}
+      ), document.body)}
     </>
   );
 };
