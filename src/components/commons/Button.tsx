@@ -11,13 +11,16 @@ type Props = ButtonBaseProps & {
   color?: 'transparent' | 'primary' | 'secondary' | 'fucosan-pink' | 'fucosan-pink-dark';
   size?: 'default' | 'sm' | 'xs' | number;
   border?: boolean;
+  noPadding?: boolean;
   loading?: boolean;
 };
 
 function Button(props: Props) {
   // Props
   const {
-    color = 'transparent', size = 'default', border = false, loading = false, ...rest
+    color = 'transparent', size = 'default',
+    border = false, loading = false, noPadding = false,
+    ...rest
   } = props;
 
   // Vars
@@ -27,9 +30,11 @@ function Button(props: Props) {
     color === 'secondary' && 'bg-secondary text-white hover:bg-secondary/80',
     color === 'fucosan-pink' && 'bg-fucosan-pink text-white hover:bg-fucosan-pink/80',
     color === 'fucosan-pink-dark' && 'bg-fucosan-pink-dark text-white hover:fucosan-pink-dark/80',
-    size === 'default' && 'py-3 px-6',
-    size === 'sm' && 'py-2 px-4 text-sm',
-    size === 'xs' && 'py-1 px-2 text-xs',
+    ...(noPadding ? [] : [
+      size === 'default' && 'py-3 px-6',
+      size === 'sm' && 'py-2 px-4 text-sm',
+      size === 'xs' && 'py-1 px-2 text-xs',
+    ]),
     'number' === typeof size && `flex items-center justify-center`,
     !!border && 'ring-2 ring-primary border-2 border-white',
     loading && 'relative pointer-events-none opacity-50',

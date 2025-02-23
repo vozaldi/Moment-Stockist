@@ -48,8 +48,13 @@ export default async function Home() {
             height={720}
           />
 
-          <div className="container pt-12 mx-auto px-8 md:px-6 xl:px-12 flex flex-col md:flex-row items-center relative">
-            <div className="grow max-w-xl flex flex-col items-start">
+          <div className={clsx([
+            "container px-4 pt-12 mx-auto flex flex-col-reverse items-center gap-x-4 gap-y-4 relative",
+            "md:flex-row md:px-6",
+            "lg:px-8",
+            "xl:px-12",
+          ])}>
+            <div className="flex-1 max-w-lg lg:max-w-xl flex flex-col items-start">
               <h3 className="text-2xl xl:text-4xl xl:leading-normal leading-normal text-gray-700 font-black mb-8">
                 {`The Easiest Way`}
                 <br />
@@ -67,12 +72,16 @@ export default async function Home() {
               <Image
                 src={'/assets/images/products/featured-essensia.png'}
                 alt={`Moment Essensia`}
+                className="lg:max-w-xl max-w-sm h-auto"
                 width={600}
                 height={600}
               />
 
               <TagCard
-                className="absolute top-8 left-28"
+                className={clsx([
+                  "absolute top-0 left-0 -mr-24",
+                  "lg:top-8 lg:left-28",
+                ])}
                 label={`Reduce The Occurence of Allergies`}
                 imageSrc={'/assets/images/decorations/decoration-herb.png'}
                 ImageProps={{
@@ -83,7 +92,10 @@ export default async function Home() {
               />
 
               <TagCard
-                className="absolute bottom-8 right-20"
+                className={clsx([
+                  "absolute bottom-0 right-0 -ml-24",
+                  "lg:bottom-8 lg:right-20",
+                ])}
                 label={`Reduce The Risk of Viral Infection`}
                 imageSrc={'/assets/images/decorations/decoration-lemon.png'}
                 ImageProps={{
@@ -94,8 +106,8 @@ export default async function Home() {
           </div>
         </section>
 
-        <section className="container mx-auto pb-8">
-          <div className="max-w-6xl mx-auto grid grid-cols-9 gap-x-8 place-content-center">
+        <section className="container px-4 mx-auto pb-8 overflow-hidden">
+          <div className="max-w-6xl mx-auto grid grid-cols-9 gap-x-8 gap-y-3 place-content-center">
             {[{
               label: `Natural Ingredients`,
               src: '/assets/images/icons/icon-quality-ingredient.png',
@@ -108,12 +120,18 @@ export default async function Home() {
             }].map((item, index) => (
               <TagCard
                 key={item.label}
-                className={clsx("col-span-3 !text-lg !rounded-2xl !px-8 bg-slate-100", index === 1 && "scale-105")}
+                className={clsx([
+                  "col-span-12 md:col-span-3 gap-x-3 !text-lg !rounded-2xl !bg-slate-100",
+                  "!px-8 !py-2 !md:py-3",
+                  "justify-center md:justify-stretch",
+                  index === 1 && "lg:scale-105 md:scale-110"
+                ])}
                 label={item.label}
                 left={(
                   <Image
                     src={item.src}
                     alt={`Icon ${item.label}`}
+                    className="w-12 h-12 md:w-16 md:h-16 object-contain"
                     width={64}
                     height={64}
                   />
@@ -123,7 +141,7 @@ export default async function Home() {
           </div>
         </section>
 
-        <section className="flex">
+        <section className="flex flex-col md:flex-row">
           <div className="bg-fucosan-pink/50 grow md:w-50 p-10 md:p-12">
             <div className="relative flex flex-col justify-center items-center max-w-[550px] mx-auto aspect-square p-6 md:p-8 rounded-3xl bg-white/90 text-center">
               <h3 className="text-2xl md:text-4xl font-serif mb-4 md:mb-8">
@@ -144,7 +162,11 @@ export default async function Home() {
             </div>
           </div>
 
-          <div className="w-5/12 overflow-hidden flex items-center justify-center">
+          <div className={clsx([
+            "flex h-[100vw] overflow-hidden items-center justify-center",
+            "md:hidden",
+            "lg:flex lg:w-5/12 lg:h-auto",
+          ])}>
             <Image
               className="relative -top-[15%] -m-[400px] w-[144%] h-[144%] object-cover"
               src={'/assets/images/banners/banner-one.jpg'}
@@ -155,8 +177,8 @@ export default async function Home() {
           </div>
         </section>
 
-        <section className="container md:pt-24 md:px-12 sm mx-auto h-screen flex-col flex justify-center">
-          <div className="text-center">
+        <section className="lg:container md:pt-24 lg:px-12 sm mx-auto h-screen flex-col flex justify-center">
+          <div className="text-center px-12">
             <h3 className="text-3xl md:text-5xl font-serif">
               {`Health is about balance`}
             </h3>
@@ -168,6 +190,9 @@ export default async function Home() {
 
           <div className="max-w-full mt-12">
             <HomeProductCarousel
+              wrapperClass="px-8"
+              slidesOffsetBefore={32}
+              slidesOffsetAfter={32}
               products={products.map((item, index) => {
                 const color = ['#cacef4', '#d2ecc5', '#eee4c3', '#ffe1e1', '#ffdbdb', '#d0eeff', '#f6f4d3', '#f5e5d6'][index];
                 const decoration_url = [
@@ -186,13 +211,13 @@ export default async function Home() {
         </section>
 
         <section className="py-7 bg-fucosan-pink text-white">
-          <h3 className="container font-bold text-2xl md:text-5xl font-serif text-center mx-auto">
+          <h3 className="container px-4 font-bold text-2xl md:text-5xl font-serif text-center mx-auto">
             {`Live Life Better with Personalized Nutrition`}
           </h3>
         </section>
 
-        <section className="container md:pt-24 md:px-12 sm mx-auto h-screen flex-col flex justify-center">
-          <div className="text-center">
+        <section className="md:pt-24 md:px-12 sm mx-auto h-screen flex-col flex justify-center items-center overflow-hidden">
+          <div className="container px-4 text-center">
             <h3 className="text-3xl md:text-5xl font-serif">
               {`What Our Customer Say`}
             </h3>
@@ -202,7 +227,7 @@ export default async function Home() {
             </p>
           </div>
 
-          <div className="max-w-full mt-12">
+          <div className="lg:max-w-6xl md:-mx-12 mt-12">
             <HomeTestimonyCarousel
               testimonies={[{
                 id: 1,
@@ -229,7 +254,7 @@ export default async function Home() {
           </div>
         </section>
 
-        <section className="container md:pt-24 md:px-12 sm mx-auto h-screen flex-col flex justify-center">
+        <section className="container px-4 md:pt-24 md:px-12 sm mx-auto h-screen flex-col flex justify-center">
           <div className="text-center max-w-4xl mx-auto">
             <h3 className="text-3xl md:text-5xl font-serif font-bold">
               {`The Daily Habit`}
@@ -286,51 +311,57 @@ export default async function Home() {
         </section>
 
         <section className="relative py-12 md:py-24 h-[75vh] md:h-screen bg-gray-100 overflow-hidden flex justify-center items-center">
-          {[{
-            image_url: '/assets/images/pictures/post-1.png',
-            right: '3%',
-            top: '45%',
-            size: 192,
-          }, {
-            image_url: '/assets/images/pictures/post-2.png',
-            left: '30%',
-            top: '20%',
-            size: 216,
-          }, {
-            image_url: '/assets/images/pictures/post-3.png',
-            left: '1%',
-            top: '37%',
-            size: 216,
-          }, {
-            image_url: '/assets/images/pictures/post-4.png',
-            left: '45%',
-            top: '56%',
-            size: 282,
-          }, {
-            image_url: '/assets/images/pictures/post-5.png',
-            left: '58%',
-            top: '35%',
-            size: 242,
-          }].map((item, index) => (
-            <Image
-              key={item.image_url}
-              src={item.image_url}
-              alt="Instagram Icon"
-              className="absolute object-cover pointer-events-none"
-              style={{
-                left: item.left,
-                right: item.right,
-                top: item.top,
-                width: item.size,
-                height: item.size,
-                zIndex: 10 - index,
-              }}
-              width={300}
-              height={300}
-            />
-          ))}
+          <div className="absolute top-0 bottom-0 -mx-[500px] lg:w-[1440px] w-[1280px] h-full z-0">
+            {[{
+              image_url: '/assets/images/pictures/post-1.png',
+              right: '3%',
+              top: '45%',
+              size: 192,
+            }, {
+              image_url: '/assets/images/pictures/post-2.png',
+              left: '30%',
+              top: '20%',
+              size: 216,
+            }, {
+              image_url: '/assets/images/pictures/post-3.png',
+              left: '1%',
+              top: '37%',
+              size: 216,
+            }, {
+              image_url: '/assets/images/pictures/post-4.png',
+              left: '45%',
+              top: '56%',
+              size: 282,
+            }, {
+              image_url: '/assets/images/pictures/post-5.png',
+              left: '58%',
+              top: '35%',
+              size: 242,
+            }].map((item, index) => (
+              <Image
+                key={item.image_url}
+                src={item.image_url}
+                alt="Instagram Icon"
+                className="absolute object-cover pointer-events-none"
+                style={{
+                  left: item.left,
+                  right: item.right,
+                  top: item.top,
+                  width: item.size,
+                  height: item.size,
+                  zIndex: 10 - index,
+                }}
+                width={300}
+                height={300}
+              />
+            ))}
+          </div>
 
-          <div className="w-80 absolute top-1/2 left-1/2 md:translate-y-[20%] md:-translate-x-[128%] -translate-x-[55%] z-20">
+          <div className={clsx([
+            "w-80 absolute top-1/2 left-1/2 -translate-x-[55%] z-20 bg-white/50 rounded-lg p-3 shadow-sm",
+            "md:translate-y-[20%] md:-translate-x-[128%] md:bg-transparent",
+            "lg:bg-transparent lg:shadow-none"
+          ])}>
             <div className="font-bold text-sm md:text-xl flex items-center drop-shadow">
               <Image
                 src={"/assets/images/socials/icon-instagram.png"}
@@ -351,15 +382,19 @@ export default async function Home() {
           </div>
         </section>
 
-        <section className="container md:pt-24 md:px-12 sm mx-auto flex items-center py-24 px-12">
-          <div className="w-1/2">
+        <section className={clsx([
+          "mx-auto flex flex-col py-24 px-12 gap-y-4",
+          "md:flex-row md:pt-24 md:px-12 md:items-center",
+          "lg:container",
+        ])}>
+          <div className="md:w-1/2">
             <h3 className="text-3xl mb-5 md:mb-0 text-center md:text-left md:text-5xl leading-normal md:leading-normal font-black font-serif">
               {`Question?`}
               <br />{`We've got answer`}
             </h3>
           </div>
 
-          <div className="w-1/2">
+          <div className="md:w-1/2">
             <Accordion
               items={[{
                 title: `Where can I buy moment products?`,

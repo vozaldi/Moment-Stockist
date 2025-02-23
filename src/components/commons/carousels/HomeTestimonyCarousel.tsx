@@ -25,7 +25,7 @@ function HomeTestimonyCarousel({
     >
       {testimonies.map((item) => {
         return (
-          <SwiperSlide key={item.name} className="!w-[580px] px-1 pb-2">
+          <SwiperSlide key={item.name} className="!w-[580px] max-w-[100vw] px-4 pb-2">
             <div className="relative px-3 flex flex-col items-center">
               <Image
                 src={item.image_url || `/assets/images/app-logo-vertical.png`}

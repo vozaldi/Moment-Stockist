@@ -59,20 +59,20 @@ function FooterPublic({
         </div>
       </div>
 
-      <div className="container relative z-10 md:px-12 px-8 mx-auto text-white pt-48 mt-24">
+      <div className="container relative z-10 md:px-12 px-8 mx-auto text-white pt-32 lg:pt-48 mt-24">
         <div className="grid grid-cols-12 gap-5 max-w-5xl mx-auto">
-          <div className="col-span-12 md:col-span-4 hidden lg:block">
+          <div className="col-span-6 md:col-span-4 hidden lg:block">
             <Image
               src={'/assets/images/app-logo-vertical.png'}
               alt={appConfig('company')}
-              className="invert brightness-0 h-24 md:h-48 -mt-20"
+              className="invert brightness-0 aspect-auto h-24 md:h-48 -mt-20"
               width={242}
               height={192}
             />
           </div>
 
           <div className="grid grid-cols-12 gap-5 col-span-12 lg:col-span-8">
-            <div className="col-span-12 md:col-span-4 hidden lg:block">
+            <div className="col-span-6 md:col-span-4">
               <h5 className="font-bold uppercase">{`Inquiries`}</h5>
 
               <ul className="mt-2">
@@ -95,7 +95,7 @@ function FooterPublic({
               </ul>
             </div>
 
-            <div className="col-span-12 md:col-span-4 hidden lg:block">
+            <div className="col-span-6 md:col-span-4">
               <h5 className="font-bold uppercase">{`Help`}</h5>
 
               <ul className="mt-2">
@@ -115,7 +115,7 @@ function FooterPublic({
               </ul>
             </div>
 
-            <div className="col-span-12 md:col-span-4 hidden lg:block">
+            <div className="col-span-6 md:col-span-4">
               <h5 className="font-bold uppercase">{`Contact Us`}</h5>
 
               <ul className="mt-2">

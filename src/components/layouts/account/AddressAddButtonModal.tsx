@@ -26,7 +26,7 @@ function AddressAddButtonModal({
       </Button>
 
       {createPortal((!isOpen ? null : (
-        <div className="fixed inset-0 z-[700] flex items-center justify-center">
+        <div className="fixed inset-0 p-4 z-[700] flex items-center justify-center">
           <div
             className="absolute inset-0 bg-black/30"
             onClick={() => setIsOpen(false)}

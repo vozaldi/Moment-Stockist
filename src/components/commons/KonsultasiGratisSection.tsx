@@ -13,8 +13,8 @@ function KonsultasiGratisSection({
 }: Props) {
   return (
     <section className={clsx(["relative", className])} {...props}>
-      <div className="container py-8 md:py-12 md:px-12 sm mx-auto flex-col flex justify-center">
-        <div className="text-center max-w-4xl mx-auto">
+      <div className="max-w-7xl px-4 py-8 md:py-12 lg:px-12 sm mx-auto flex-col flex justify-center">
+        <div className="text-center mx-auto">
           <h3 className="uppercase text-center text-4xl font-serif font-bold">
             {`Mau Konsultasi`}
             {' '}<span className="text-fucosan-pink">{`Gratis`}</span>

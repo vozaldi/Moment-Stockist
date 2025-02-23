@@ -24,10 +24,9 @@ function TagCard({
   return (
     <div className={clsx([
       { relative: !className?.includes('absolute') },
-      'flex items-center cursor-default hover:scale-105 transition-all ease-in-out duration-300 bg-white',
-      size === 'default' && 'py-5 px-6 text-sm rounded-xl shadow-lg hover:shadow-xl',
-      size === 'sm' && 'py-4 px-4 text-xs rounded-lg',
-      size === 'xs' && 'py-2 px-2 text-xs rounded-md',
+      'flex items-center cursor-default lg:hover:scale-105 hover:scale-110 transition-all ease-in-out duration-300 bg-white',
+      size === 'default' && 'py-3 px-4 text-xs rounded-xl shadow-lg hover:shadow-xl',
+      size === 'default' && 'lg:py-5 lg:px-6 lg:text-sm',
       className,
     ])} {...props}>
       {left}

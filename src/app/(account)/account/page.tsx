@@ -6,8 +6,8 @@ import Image from "next/image";
 
 export default function Account() {
   return (
-    <section className="container mx-auto pt-6 pb-8 flex gap-5">
-      <div className="w-4/12">
+    <section className="container px-4 mx-auto pt-6 pb-8 flex flex-col lg:flex-row gap-5">
+      <div className="lg:w-4/12">
         <div className="sticky top-24 p-5 rounded-md bg-slate-200">
           <h1 className="text-lg text-center">
             {`Contact Information`}

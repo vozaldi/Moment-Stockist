@@ -6,7 +6,7 @@ import numeral from "numeral";
 
 export default function Order() {
   return (
-    <section className="container mx-auto pt-6 pb-8 flex flex-col gap-5">
+    <section className="container px-4 mx-auto pt-6 pb-8 flex flex-col gap-5">
       {[{ 
         id: 1,
         order_code: `ORD-0422-V76-216`,
@@ -50,13 +50,16 @@ export default function Order() {
       }].map((item, index) => (
         <div
           key={item.id}
-          className="relative overflow-hidden p-5 flex rounded-lg shadow-md hover:shadow-lg bg-slate-100"
+          className={clsx([
+            "relative overflow-hidden p-5 flex flex-col rounded-lg shadow-md hover:shadow-lg bg-slate-100",
+            "md:flex-row",
+          ])}
         >
-          <div className="px-3 py-1 text-sm uppercase text-center absolute top-[32px] left-[-30px] font-mono pointer-events-none rotate-[-45deg] w-[150px] bg-gray-500 text-white ng-star-inserted">
+          <div className="px-3 py-1 text-sm uppercase text-center absolute top-[32px] left-[-30px] font-mono pointer-events-none rotate-[-45deg] w-[150px] bg-gray-500 text-white">
             {`Pending`}
           </div>
 
-          <div className="w-4/12">
+          <div className="md:w-4/12">
             <h1 className="text-center text-2xl font-bold font-mono tracking-wide">
               {item.order_code}
             </h1>
@@ -124,7 +127,10 @@ export default function Order() {
             </div>
           </div>
 
-          <div className="grow pl-5 ml-5 border-l border-gray-300">
+          <div className={clsx([
+            "border-t mt-2 pt-2 border-gray-300",
+            "md:grow md:pl-5 md:ml-5 md:mt-0 md:pt-0 md:border-l md:border-t-0",
+          ])}>
             <div className="flex flex-col">
               {[{
                 id: 1,

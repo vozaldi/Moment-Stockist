@@ -51,11 +51,11 @@ export default async function ProductSlug({
 
   return (
     <>
-      <div className="container mt-32 mx-auto">
+      <div className="lg:container px-4 md:px-8 lg:px-4 mt-32 mx-auto">
         <article
           className={clsx([
-            "rounded-2xl bg-white shadow-lg mr-12",
-            "flex",
+            "rounded-2xl bg-white shadow-lg md:mr-12",
+            "flex flex-col-reverse md:flex-row",
             !!product.color && "text-white",
           ])}
           style={{ background: product.color }}
@@ -73,13 +73,13 @@ export default async function ProductSlug({
               <ProductTabs className="mt-2" product={product} />
             )}
 
-            <AddToCart product={product} />
+            <AddToCart className="uppercase rounded-full" product={product} />
           </div>
 
-          <div className="p-12 relative flex items-center justify-center">
+          <div className="p-8 lg:p-12 md:max-w-[33%] relative flex items-center justify-center">
             {!!product.image && (
               <Image
-                className="max-w-none w-[360px] h-[360px] object-contain -m-12"
+                className="w-full h-auto lg:max-w-none lg:w-[360px] lg:h-[360px] object-contain -m-12"
                 src={product.image}
                 alt={`Image ${product.name}`}
                 width={400}
@@ -90,7 +90,7 @@ export default async function ProductSlug({
             {!!product.decoration_url && (
               <Image
                 src={product.decoration_url || `/assets/images/app-logo-vertical.png`}
-                className="absolute max-w-none w-[120%] h-[120%] -left-[5%] -top-[10%] object-contain group-hover/card:scale-105 transition-all duration-300 pointer-events-none"
+                className="absolute max-w-[95vw] w-[120%] h-[120%] md:-left-[5%] -top-[10%] object-contain group-hover/card:scale-105 transition-all duration-300 pointer-events-none"
                 alt={`Image ${product.name}`}
                 width={400}
                 height={400}

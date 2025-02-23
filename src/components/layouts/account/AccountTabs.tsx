@@ -18,7 +18,7 @@ function AccountTabs({
 
   return (
     <section className={clsx([className])} {...props}>
-      <div className="container mx-auto flex">
+      <div className="container px-4 mx-auto flex">
         {[{
           label: `My Account`,
           href: `/account`,
@@ -36,9 +36,11 @@ function AccountTabs({
               type="link"
               href={item.href}
               className={clsx([
-                "flex py-2 px-8 text-gray-700 !rounded-none border-b-2 border-transparent font-semibold hover:text-primary",
+                "flex py-2 px-4 text-gray-700 !rounded-none border-b-2 border-transparent font-semibold hover:text-primary text-sm",
+                "md:px-8 md:text-base",
                 isActive && "!font-bold !border-fucosan-pink-dark !text-fucosan-pink-dark",
               ])}
+              noPadding
             >
               <item.Icon size={22} className="mr-2" />
               {item.label}
@@ -47,7 +49,11 @@ function AccountTabs({
         })}
 
         <Button
-          className="flex py-2 px-8 text-gray-700 !rounded-none border-b-2 border-transparent font-semibold hover:text-primary"
+          className={clsx([
+            "flex py-2 px-4 text-gray-700 !rounded-none border-b-2 border-transparent font-semibold hover:text-primary text-sm",
+            "md:py-2 md:px-8 md:text-base",
+          ])}
+          noPadding
         >
           <IoExitOutline size={22} className="mr-2" />
 

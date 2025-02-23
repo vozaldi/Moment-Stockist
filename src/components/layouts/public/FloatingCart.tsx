@@ -184,7 +184,7 @@ function FloatingCart({}: Props) {
       </Button>
 
       {!!cartOpen && (
-        <div className="fixed inset-0 z-[700]">
+        <div className="fixed inset-0 p-4 z-[700]">
           <div
             className="absolute inset-0 bg-white/50 backdrop-blur-md"
             onClick={() => setCartOpen(false)}

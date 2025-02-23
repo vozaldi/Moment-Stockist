@@ -1,7 +1,7 @@
 'use client';
 
 import Button from "@/components/commons/Button";
-import { PromoModel } from "@/types/models";
+import { ProductModel } from "@/types/models";
 import clsx from "clsx";
 import { useState } from "react";
 
@@ -13,7 +13,7 @@ const howToUse = `<p>TBD</p>`;
 const ingredient = `<p>TBD</p>`;
 
 type Props = React.HTMLAttributes<HTMLDivElement> & {
-  product: PromoModel;
+  product: ProductModel;
 };
 
 function ProductTabs({
@@ -41,6 +41,7 @@ function ProductTabs({
               tabActive === index && "!border-white",
               tabActive !== index && "opacity-75",
             ])}
+            noPadding
             onClick={() => setTabActive(index)}
           >
             {item.label}

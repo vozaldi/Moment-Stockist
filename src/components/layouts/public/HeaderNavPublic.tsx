@@ -22,7 +22,7 @@ function HeaderNavPublic({
 
   return (
     <nav className={clsx("w-full absolute top-0 left-0 z-[500]", className)} {...props}>
-      <div className="container mx-auto py-4 flex justify-between items-center">
+      <div className="container px-4 py-2 md:py-4 mx-auto flex justify-between items-center">
         <Link href={"/"}>
           <Image
             src={'/assets/images/app-logo.png'}
@@ -32,7 +32,23 @@ function HeaderNavPublic({
           />
         </Link>
 
-        <ul className="flex gap-x-4 items-center">
+        <ul className="flex md:hidden gap-x-4 items-center">
+          <li>
+            <Link
+              href={'/auth/login'}
+              className="flex text-lg items-center hover:text-primary px-2 py-2"
+              onClick={(e) => {
+                e.preventDefault();
+
+                return setLoginOpen(true);
+              }}
+            >
+              <IoPersonCircleOutline size={40} />
+            </Link>
+          </li>
+        </ul>
+
+        <ul className="hidden md:flex gap-x-4 items-center">
           <li>
             <Link
               href={'/auth/login'}
