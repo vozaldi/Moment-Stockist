@@ -26,7 +26,7 @@ function PasswordButtonModal({
         {`Change Password`}
       </Button>
 
-      {createPortal((
+      {'undefined' !== typeof window && createPortal((
         <div className={clsx([
           "fixed inset-0 p-4 z-[700] flex items-center justify-center",
           !isOpen && "opacity-0 [visibility:hidden]",
