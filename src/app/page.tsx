@@ -196,9 +196,6 @@ export default async function Home() {
 
           <div className="max-w-full mt-12">
             <HomeProductCarousel
-              wrapperClass="px-8"
-              slidesOffsetBefore={32}
-              slidesOffsetAfter={32}
               products={products.map((item, index) => {
                 const color = ['#cacef4', '#d2ecc5', '#eee4c3', '#ffe1e1', '#ffdbdb', '#d0eeff', '#f6f4d3', '#f5e5d6'][index];
                 const decoration_url = [

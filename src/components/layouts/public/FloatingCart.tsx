@@ -87,9 +87,9 @@ function FloatingCart({}: Props) {
 
   const input = useFields({
     address_id: null as number | null,
-    store_id: null as number | null,
     payment_method: '',
     courier: '',
+    delivery: '',
   });
 
   // States
@@ -131,8 +131,6 @@ function FloatingCart({}: Props) {
       case STEP.CART:
         return setStep(STEP.ADDRESS);
       case STEP.ADDRESS:
-        return setStep(STEP.STORE);
-      case STEP.STORE:
         return setStep(STEP.CHECKOUT);
       case STEP.CHECKOUT:
         return handleSubmit();
@@ -147,12 +145,12 @@ function FloatingCart({}: Props) {
   const handleSubmit = async () => {
     if (!input.fields.address_id) {
       return input.handleErrorShow([], `Please select an address`);
-    } else if (!input.fields.store_id) {
-      return input.handleErrorShow([], `Please select a store`);
     } else if (!input.fields.payment_method) {
       return input.handleErrorShow('payment_method', `Please select a payment method`);
     } else if (!input.fields.courier) {
       return input.handleErrorShow('courier', `Please select a courier`);
+    } else if (!input.fields.delivery) {
+      return input.handleErrorShow('delivery', `Please select delivery method`);
     }
 
     console.log("Inputs", input.fields);
@@ -166,6 +164,9 @@ function FloatingCart({}: Props) {
       setStep(STEP.DONE);
     }, 2000);
   }
+
+  // Vars
+  const ongkir = !input.fields.delivery ? 0 : 10000;
 
   return (
     <>
@@ -225,7 +226,6 @@ function FloatingCart({}: Props) {
               <h3 className="text-xl font-semibold text-fucosan-pink-dark text-center">
                 {step === STEP.CART && `My Cart`}
                 {step === STEP.ADDRESS && `Delivery Information`}
-                {step === STEP.STORE && `Select Store`}
                 {step === STEP.CHECKOUT && `Payment`}
                 {step === STEP.DONE && `Payment`}
               </h3>
@@ -275,48 +275,6 @@ function FloatingCart({}: Props) {
                     address={item}
                     onClick={() => input.handleFieldChange('address_id', item.id)}
                   />
-                );
-              })}
-            </div>
-          )}
-
-          {step === STEP.STORE && (
-            <div className="flex-1 overflow-y-auto py-4 px-4">
-              {[{
-                id: 1,
-                name: `Delta Store`,
-                address: `Jl. Delta No. 1, Jakarta Selatan, Indonesia`,
-                phone: `08123456789`,
-              }, {
-                id: 2,
-                name: `Stockist Surabaya`,
-                address: `Jl. Alpha No. 2, Surabaya, Indonesia`,
-                phone: `08123456789`,
-              }].map((item, index) => {
-                const isActive = input.fields.store_id === item.id;
-
-                return (
-                  <Button
-                    key={item.id}
-                    className={clsx([
-                      "text-left w-full bg-white shadow-sm hover:shadow-md !px-4 !py-2",
-                      'border border-transparent',
-                      !index ? '' : 'mt-2',
-                      !isActive && '!bg-slate-100',
-                      isActive && '!border-slate-400 !bg-slate-200',
-                    ])}
-                    onClick={() => input.handleFieldChange('store_id', item.id)}
-                  >
-                    <h1 className="font-bold">{item.name}</h1>
-
-                    <p className="mt-1 text-gray-500 text-xs">
-                      {item.address}
-                    </p>
-
-                    <a href={`tel:${item.phone}`} className="mt-1 text-gray-500 text-xs hover:underline">
-                      {item.phone}
-                    </a>
-                  </Button>
                 );
               })}
             </div>
@@ -393,6 +351,32 @@ function FloatingCart({}: Props) {
                   <option key={item} value={item}>{item}</option>
                 ))}
               </SelectField>
+
+              {!!input.fields.courier && (
+                <>
+                  <h3 className="mt-4 px-3 text-sm font-medium">
+                    {`Delivery Method`}
+                  </h3>
+
+                  <SelectField
+                    className="mt-1"
+                    inputClassName="!border-slate-300 !bg-slate-200"
+                    onChange={(e) => input.handleFieldChange('delivery', e.target.value)}
+                    error={input.isFieldError('delivery')}
+                    message={input.error.message}
+                  >
+                    <option>{`-- Select Delivery Method ---`}</option>
+    
+                    {[
+                      "EKO (4-6 Hari) - Rp 8.000",
+                      "REG (2-3 Hari) - Rp 10.000",
+                      "YES (Next Day) - Rp 20.000",
+                    ].map((item, index) => (
+                      <option key={item} value={item}>{item}</option>
+                    ))}
+                  </SelectField>
+                </>
+              )}
             </div>
           )}
 
@@ -440,8 +424,8 @@ function FloatingCart({}: Props) {
                 value: numeral(grandTotal).format('$0,0'),
               }, {
                 label: `Delivery Cost`,
-                value: numeral(65000).format('$0,0'),
-                show: !!input.fields.courier,
+                value: numeral(ongkir).format('$0,0'),
+                show: !!input.fields.delivery,
               }].filter(({ show }) => show !== false).map((item, index) => (
                 <div key={item.label} className={clsx(["flex items-center text-sm", !!index && 'mt-1'])}>
                   <p className="grow shrink pr-4">{item.label}</p>
@@ -457,7 +441,7 @@ function FloatingCart({}: Props) {
                   </p>
 
                   <p className="text-right">
-                    {numeral((grandTotal || 0) + 65000).format('$0,0')}
+                    {numeral((grandTotal || 0) + ongkir).format('$0,0')}
                   </p>
                 </div>
               </div>
@@ -478,7 +462,6 @@ function FloatingCart({}: Props) {
           >
             {step === STEP.CART && `Checkout`}
             {step === STEP.ADDRESS && `Next`}
-            {step === STEP.STORE && `Next`}
             {step === STEP.CHECKOUT && `Checkout`}
             {step === STEP.DONE && `Order Detail`}
           </Button>
@@ -495,9 +478,8 @@ function FloatingCart({}: Props) {
 const STEP = {
   CART: 1,
   ADDRESS: 2,
-  STORE: 3,
-  CHECKOUT: 4,
-  DONE: 5,
+  CHECKOUT: 3,
+  DONE: 4,
 };
 
 export default FloatingCart;
